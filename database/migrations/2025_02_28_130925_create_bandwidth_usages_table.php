@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->foreignId('device_id')->constrained('devices')->onDelete('cascade');
             $table->float('download')->default(0); // Data dalam MB
             $table->float('upload')->default(0); // Data dalam MB
-            $table->timestamp('timestamp')->useCurrent();
+            $table->timestamps();
         });
     }
 

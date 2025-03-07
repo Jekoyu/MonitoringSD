@@ -10,7 +10,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('device_id')->constrained('devices')->onDelete('cascade');
             $table->text('action');
-            $table->timestamp('timestamp')->useCurrent();
+            $table->timestamps();
         });
     }
 

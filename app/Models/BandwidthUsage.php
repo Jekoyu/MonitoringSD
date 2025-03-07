@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,6 +9,7 @@ class BandwidthUsage extends Model
 {
     use HasFactory;
 
+    protected $table = "bandwidth_usage";
     protected $fillable = ['device_id', 'download', 'upload', 'timestamp'];
 
     public function device()
