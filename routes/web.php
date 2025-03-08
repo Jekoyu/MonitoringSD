@@ -11,6 +11,10 @@ Route::get('/login', function () {
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
+Route::get('/home', function () {
+    return view('home');
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/', function () {
