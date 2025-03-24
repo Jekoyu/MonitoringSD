@@ -18,14 +18,14 @@
 </button>
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto navbar-list">
-        <li class="nav-item nav-icon">
+        <!-- <li class="nav-item nav-icon">
             <div class="iq-search-bar">
                 <form action="#" class="searchbox">
                     <input type="text" class="text search-input" placeholder="Type here to search...">
                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
                 </form>
             </div>
-        </li>
+        </li> -->
         <li class="nav-item nav-icon">
             <a href="#" class="search-toggle iq-waves-effect text-primary rounded">
                 <i class="ri-notification-line block"></i>
