@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LogsController;
+use App\Http\Controllers\DevicesController;
+use App\Http\Controllers\SystemsController;
 use App\Http\Controllers\DashboardController;
 
 Route::get('/login', function () {
@@ -20,4 +23,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         return redirect('/dashboard');
     });
+
+
+
+    Route::get('/devices',[DevicesController::class,'index'])->name('devices');
+    Route::get('/systems',[SystemsController::class,'index'])->name('systems');
+    Route::get('/logs',[LogsController::class,'index'])->name('logs');
+    
+
 });

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,11 +12,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard', [
-            'devices' => Device::all(),
-            'logs' => NetworkLog::latest()->take(10)->get(),
-            'bandwidth' => BandwidthUsage::latest()->take(5)->get(),
-            'notifications' => Notification::latest()->take(5)->get(),
-        ]);
+        return view('home');
     }
 }

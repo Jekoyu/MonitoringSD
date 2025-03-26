@@ -1,17 +1,37 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
-@section('page-title', 'Dashboard')
+@section('title', 'Dashboard Monitoring Jaringan')
+@section('page-title', 'Dashboard Jaringan SD')
 
 @section('content')
 <div class="col-lg-8">
-    <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-bg-danger">
+    <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-bg-primary">
         <div class="iq-card-body box iq-box-relative">
             <div class="box-image float-right">
-                <img class="rounded img-fluid" src="{{ asset('assets/images/page-img/37.png') }}" alt="profile">
+                <img class="rounded img-fluid" src="{{ asset('assets/images/page-img/37.png') }}" alt="network">
             </div>
-            <h4 class="d-block mb-3 text-black">Welcome back John</h4>
-            <p class="d-inline-block welcome-text text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate facilisis velit, vitae fermentum nulla ultrices et.</p>
+            <h4 class="d-block mb-3 ">Monitoring Jaringan SD</h4>
+            <p class="d-inline-block welcome-text ">
+                <i class="ri-information-line mr-2 text-warning"></i>
+                Sistem pemantauan jaringan sekolah dasar. Pantau status koneksi, bandwidth, dan perangkat jaringan.
+            </p>
+            <div class="d-flex flex-wrap mt-3">
+                <div class="mr-3 mb-2">
+                    <span class="badge iq-bg-warning ">
+                        <i class="ri-wifi-line mr-1"></i> 42 Perangkat Online
+                    </span>
+                </div>
+                <div class="mr-3 mb-2">
+                    <span class="badge iq-bg-danger ">
+                        <i class="ri-alarm-warning-line mr-1"></i> 1 Gangguan
+                    </span>
+                </div>
+                <div class="mb-2">
+                    <span class="badge iq-bg-success ">
+                        <i class="ri-shield-check-line mr-1"></i> Keamanan Aktif
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -22,19 +42,19 @@
                 <li class="d-flex mb-4 align-items-center justify-content-between">
                     <div class="col-sm-9 p-0">
                         <div class="d-flex align-items-center">
-                            <div class="avatar-55 text-center rounded iq-bg-danger">
-                                <span>B5</span>
+                            <div class="avatar-55 text-center rounded iq-bg-primary">
+                                <i class="ri-computer-line"></i>
                             </div>
                             <div class="media-support-info ml-3">
-                                <h5>Loads</h5>
-                                <p class="mb-0">Online Participant</p>
+                                <h5>Perangkat Aktif</h5>
+                                <p class="mb-0">42 Terhubung</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3 p-0">
                         <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                             <div class="iq-progress-bar">
-                                <span class="bg-danger" data-percent="50"></span>
+                                <span class="bg-primary" data-percent="85"></span>
                             </div>
                         </div>
                     </div>
@@ -42,19 +62,19 @@
                 <li class="d-flex align-items-center justify-content-between">
                     <div class="col-sm-9 p-0">
                         <div class="d-flex align-items-center">
-                            <div class="avatar-55 text-center rounded iq-bg-primary">
-                                <span>G2</span>
+                            <div class="avatar-55 text-center rounded iq-bg-danger">
+                                <i class="ri-alert-line"></i>
                             </div>
                             <div class="media-support-info ml-3">
-                                <h5>Requests</h5>
-                                <p class="mb-0">Offline Participant</p>
+                                <h5>Gangguan</h5>
+                                <p class="mb-0">1 Perangkat Offline</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3 p-0">
                         <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                             <div class="iq-progress-bar">
-                                <span class="bg-primary" data-percent="80"></span>
+                                <span class="bg-danger" data-percent="15"></span>
                             </div>
                         </div>
                     </div>
@@ -63,22 +83,23 @@
         </div>
     </div>
 </div>
+
 <div class="col-lg-8 row m-0 p-0">
     <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
                 <div class="icon iq-icon-box iq-bg-primary rounded" data-wow-delay="0.2s">
-                    <i class="ri-cpu-line"></i>
+                    <i class="ri-download-line"></i>
                 </div>
                 <div class="mt-4">
-                    <h5 class="text-black text-uppercase">CPU</h5>
-                    <h3 class="d-flex text-primary"> 4.8%<i class="ri-arrow-up-line"></i></h3>
+                    <h5 class="text-black text-uppercase">Download</h5>
+                    <h3 class="d-flex text-primary"> 10 Mbps<i class="ri-arrow-up-line"></i></h3>
                 </div>
-                <p class="mb-0 mt-1">Avg +65%</p>
+                <p class="mb-0 mt-1">Max 15 Mbps</p>
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-primary" data-percent="65"></span>
+                            <span class="bg-primary" data-percent="67"></span>
                         </div>
                     </div>
                 </div>
@@ -89,17 +110,17 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
                 <div class="icon iq-icon-box iq-bg-danger rounded" data-wow-delay="0.2s">
-                    <i class="ri-window-line"></i>
+                    <i class="ri-upload-line"></i>
                 </div>
                 <div class="mt-4">
-                    <h5 class="text-black text-uppercase">RAM</h5>
-                    <h3 class="d-flex text-danger"> 4.2%<i class="ri-arrow-down-line"></i></h3>
+                    <h5 class="text-black text-uppercase">Upload</h5>
+                    <h3 class="d-flex text-danger"> 5 Mbps<i class="ri-arrow-up-line"></i></h3>
                 </div>
-                <p class="mb-0 mt-1">Avg +85%</p>
+                <p class="mb-0 mt-1">Max 10 Mbps</p>
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-danger" data-percent="85"></span>
+                            <span class="bg-danger" data-percent="50"></span>
                         </div>
                     </div>
                 </div>
@@ -109,18 +130,18 @@
     <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
-                <div class="icon iq-icon-box iq-bg-primary rounded" data-wow-delay="0.2s">
-                    <i class="ri-u-disk-line"></i>
+                <div class="icon iq-icon-box iq-bg-success rounded" data-wow-delay="0.2s">
+                    <i class="ri-wifi-line"></i>
                 </div>
                 <div class="mt-4">
-                    <h5 class="text-black text-uppercase">DISK</h5>
-                    <h3 class="d-flex text-primary"> 5.8GB<i class="ri-arrow-up-line"></i></h3>
+                    <h5 class="text-black text-uppercase">Uptime</h5>
+                    <h3 class="d-flex text-success"> 99.8%<i class="ri-arrow-up-line"></i></h3>
                 </div>
-                <p class="mb-0 mt-1">Avg +36%</p>
+                <p class="mb-0 mt-1">7 Hari Terakhir</p>
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-primary" data-percent="36"></span>
+                            <span class="bg-success" data-percent="99"></span>
                         </div>
                     </div>
                 </div>
@@ -130,18 +151,18 @@
     <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
-                <div class="icon iq-icon-box iq-bg-danger rounded" data-wow-delay="0.2s">
-                    <i class="ri-global-line"></i>
+                <div class="icon iq-icon-box iq-bg-warning rounded" data-wow-delay="0.2s">
+                    <i class="ri-time-line"></i>
                 </div>
                 <div class="mt-4">
-                    <h5 class="text-black text-uppercase">SERVICES</h5>
-                    <h3 class="d-flex text-danger"> 3.5KB<i class="ri-arrow-down-line"></i></h3>
+                    <h5 class="text-black text-uppercase">Latency</h5>
+                    <h3 class="d-flex text-warning"> 28 ms<i class="ri-arrow-down-line"></i></h3>
                 </div>
-                <p class="mb-0 mt-1">Avg +48%</p>
+                <p class="mb-0 mt-1">Rata-rata</p>
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-danger" data-percent="48"></span>
+                            <span class="bg-warning" data-percent="72"></span>
                         </div>
                     </div>
                 </div>
@@ -149,407 +170,85 @@
         </div>
     </div>
 </div>
-<div class="col-lg-4">
-    <div class="iq-card bg-danger iq-card-block iq-card-stretch iq-card-height-half">
-        <div class="iq-card-body box iq-box-relative">
-            <div class="d-flex flex-wrap justify-content-between align-items-center">
-                <div class="col-7 p-0">
-                    <div class="float-left progress-round income-progress mr-3" data-value="80">
-                        <span class="progress-left">
-                            <span class="progress-bar border-white" style="transform: rotate(108deg);"></span>
-                        </span>
-                        <span class="progress-right">
-                            <span class="progress-bar border-white" style="transform: rotate(180deg);"></span>
-                        </span>
-                        <div class="progress-value w-100 h-100 rounded d-flex align-items-center justify-content-center text-center">
-                            <div class="h4 mb-0">75</div>
-                        </div>
-                    </div>
-                    <h5 class="d-block mt-2 text-white font-weight-500">Storage<br> Usage</h5>
-                </div>
-                <div class="col-5 pr-0 right-border-block position-relative">
-                    <!-- <div class="avatar-30 text-center rounded-circle iq-bg-danger" data-wow-delay="0.2s">
-                                    <span class="font-size-14 align-item-center"><i class="ri-account-box-line"></i></span>
-                                 </div> -->
-                    <h5 class="text-white mt-2">594875625</h5>
-                    <span class="text-white">Online Users</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="iq-card iq-card-block iq-card-stretch iq-card-height-half iq-background-image">
-        <div class="iq-card-body box iq-box-relative rounded">
-            <div class="d-flex justify-content-between align-items-left">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="float-left progress-round income-progress" data-value="80">
-                        <span class="progress-left">
-                            <span class="progress-bar border-primary" style="transform: rotate(108deg);"></span>
-                        </span>
-                        <span class="progress-right">
-                            <span class="progress-bar border-success" style="transform: rotate(180deg);"></span>
-                        </span>
-                    </div>
-                    <div class="pl-3">
-                        <ul class="float-right d-inline-block p-0 m-0 list-inline">
-                            <li class="line-height-3">
-                                <span class="text-danger total-progress position-relative pl-2">
-                                    <span class="bg-danger rounded"></span>Total Processes: 61<i class="ri-arrow-up-line"></i>
-                                </span>
-                            </li>
-                            <li class="line-height-3">
-                                <span class="text-primary total-progress position-relative pl-2">
-                                    <span class="bg-primary rounded"></span>Total Threands: 993<i class="ri-arrow-down-line"></i>
-                                </span>
-                            </li>
-                            <li class="line-height-3">
-                                <span class="text-success total-progress position-relative pl-2">
-                                    <span class="bg-success rounded"></span>Total Handles: 26957<i class="ri-arrow-up-line"></i>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="col-lg-8">
     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-header d-flex justify-content-between">
             <div class="iq-header-title">
-                <h4 class="card-title">Server Traffic Source</h4>
+                <h4 class="card-title">Traffic Jaringan</h4>
             </div>
             <div class="iq-card-header-toolbar d-flex align-items-center">
                 <div class="dropdown">
-                    <span class="dropdown-toggle dropdown-bg iq-bg-danger" id="dropdownMenuButton1" data-toggle="dropdown">
-                        This Year<i class="ri-arrow-down-s-line ml-1 text-danger"></i>
+                    <span class="dropdown-toggle dropdown-bg iq-bg-primary" id="dropdownMenuButton1" data-toggle="dropdown">
+                        Hari Ini<i class="ri-arrow-down-s-line ml-1 text-primary"></i>
                     </span>
                     <div class="dropdown-menu dropdown-menu-right shadow-none" aria-labelledby="dropdownMenuButton1">
-                        <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                        <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                        <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                        <a class="dropdown-item" href="#"><i class="ri-time-line mr-2"></i>Hari Ini</a>
+                        <a class="dropdown-item" href="#"><i class="ri-calendar-2-line mr-2"></i>Minggu Ini</a>
+                        <a class="dropdown-item" href="#"><i class="ri-calendar-line mr-2"></i>Bulan Ini</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="iq-card-body">
-            <div id="report-chart-02" style="min-height: 150px;"></div>
+            <!-- <div id="report-chart-02" ></div> -->
+             <div id="report-chart-3"></div>
         </div>
     </div>
 </div>
+
 <div class="col-lg-4">
-    <div class="iq-card iq-card-block iq-card-stretch iq-card-height bg-primary rounded background-image-overlap">
+    <div class="iq-card iq-card-block iq-card-stretch iq-card-height bg-danger rounded">
         <div class="iq-card-body">
             <div class="d-flex align-items-center mb-3">
-                <div><img class="rounded" src="images/page-img/38.png" alt=""></div>
-                <h5 class="pl-3 text-white">Unauthorized Threats has been Terminated</h5>
+                <div><i class="ri-alarm-warning-line fa-3x text-white"></i></div>
+                <h5 class="pl-3 text-white">Peringatan Jaringan</h5>
             </div>
-            <p class="mb-2"><span class="text-white">5</span> Unnecessary Data</p>
-            <p class="mb-2"><span class="text-white">12</span> Undentified Source Data</p>
-            <p class="mb-3"><span class="text-white">8</span> Unused Images</p>
-            <button type="submit" class="btn w-100 btn-white mt-4 text-primary viwe-more">View More</button>
+            <p class="mb-2"><span class="text-white">1</span> Access Point Offline</p>
+            <p class="mb-2"><span class="text-white">3</span> Perangkat High Latency</p>
+            <p class="mb-3"><span class="text-white">85%</span> Penggunaan Bandwidth</p>
+            <button type="submit" class="btn w-100 btn-white mt-4 text-danger">Detail Masalah</button>
         </div>
     </div>
 </div>
-<div class="col-lg-8">
-    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-        <div class="iq-card-header d-flex justify-content-between">
-            <div class="iq-header-title">
-                <h4 class="card-title">Bandwidth Public</h4>
-            </div>
-            <div class="mt-1">
-                <div class="d-flex align-items-center justify-content-between">
-                    <a href="javascript:void();" class="d-flex align-items-center mr-4">
-                        <span class="bg-danger p-1 rounded mr-2"></span>
-                        <p class="text-danger mb-0">Lowest Speed </p>
-                    </a>
-                    <a href="javascript:void();" class="d-flex align-items-center">
-                        <span class="bg-primary p-1 rounded mr-2"></span>
-                        <p class="text-primary mb-0">Highest Speed</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="iq-card-body">
-            <div id="iq-income-chart"></div>
-        </div>
-    </div>
-</div>
-<div class="col-lg-4">
-    <div class="iq-card">
-        <div class="iq-card-body box iq-box-relative rounded">
-            <div class="d-flex align-items-center">
-                <div class="float-left progress-round income-progress disk-usage" data-value="80">
-                    <span class="progress-left">
-                        <span class="progress-bar border-success" style="transform: rotate(108deg);"></span>
-                    </span>
-                    <span class="progress-right">
-                        <span class="progress-bar border-primary" style="transform: rotate(180deg);"></span>
-                    </span>
-                </div>
-                <div class="pl-3">
-                    <h5 class="d-block mt-0 mb-1 text-black">Disk Usage</h5>
-                    <ul class="float-right d-inline-block p-0 m-0 list-inline">
-                        <li class="line-height-3">
-                            <span class="text-danger total-progress position-relative pl-2 font-size-12 font-weight-500">
-                                <span class="bg-danger rounded"></span>Max Usage</span>
-                        </li>
-                        <li class="line-height-3">
-                            <span class="text-primary total-progress position-relative pl-2 font-size-12 font-weight-500">
-                                <span class="bg-primary rounded"></span>Average Usage</span>
-                        </li>
-                        <li class="line-height-3">
-                            <span class="text-success total-progress position-relative pl-2 font-size-12 font-weight-500">
-                                <span class="bg-success rounded"></span>Minimum Usage</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="iq-card">
-        <div class="iq-card-header d-flex justify-content-between">
-            <div class="iq-header-title">
-                <h4 class="card-title">Load Average</h4>
-            </div>
-        </div>
-        <div class="iq-card-body p-0">
-            <div id="chart-9"></div>
-        </div>
-    </div>
-</div>
-<div class="col-lg-6 row m-0 p-0">
-    <div class="col-sm-6">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-            <div class="iq-card-header d-flex justify-content-between">
-                <div class="iq-header-title">
-                    <h4 class="card-title">CPU Daily Usage</h4>
-                </div>
-            </div>
-            <div class="iq-card-body pt-0">
-                <div id="home-chart-11"></div>
-                <div class="text-center">
-                    <h4>50.03%</h4>
-                    <p class="mb-0">CPU usage is<span class="text-primary pl-2">good</span></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="iq-card bg-danger">
-            <div class="iq-card-body box iq-box-relative">
-                <div class="d-flex flex-wrap justify-content-between align-items-center">
-                    <div class="col-4 p-0">
-                        <div class="float-left progress-round income-progress mr-2" data-value="80">
-                            <span class="progress-left">
-                                <span class="progress-bar border-white" style="transform: rotate(108deg);"></span>
-                            </span>
-                            <span class="progress-right">
-                                <span class="progress-bar border-white" style="transform: rotate(180deg);"></span>
-                            </span>
-                            <div class="progress-value w-100 h-100 rounded d-flex align-items-center justify-content-center text-center">
-                                <div class="h4 mb-0">12</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8 pr-0">
-                        <h5 class="d-block mt-2 mb-3 text-white">Most Recent Alarams</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="iq-card">
-            <div class="iq-card-body box iq-box-relative rounded">
-                <div class="d-flex align-items-center">
-                    <div class="float-left progress-round heatmap-progress" data-value="80">
-                        <span class="progress-left">
-                            <span class="progress-bar border-primary" style="transform: rotate(108deg);"></span>
-                        </span>
-                        <span class="progress-right">
-                            <span class="progress-bar border-success" style="transform: rotate(180deg);"></span>
-                        </span>
-                    </div>
-                    <div class="pl-3">
-                        <h5 class="d-block mt-0 mb-1 text-black">Heat Map</h5>
-                        <ul class="d-inline-block p-0 m-0 list-inline">
-                            <li class="line-height-3">
-                                <span class="text-danger total-progress position-relative pl-2 font-size-12 font-weight-500">
-                                    <span class="bg-danger rounded"></span>Clear</span>
-                            </li>
-                            <li class="line-height-3">
-                                <span class="text-primary total-progress position-relative pl-2 font-size-12 font-weight-500">
-                                    <span class="bg-primary rounded"></span>Critical</span>
-                            </li>
-                            <li class="line-height-3">
-                                <span class="text-success total-progress position-relative pl-2 font-size-12 font-weight-500">
-                                    <span class="bg-success rounded"></span>Trouble</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="col-lg-6">
     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-header d-flex justify-content-between">
             <div class="iq-header-title">
-                <h4 class="card-title">Ram Usage</h4>
-            </div>
-        </div>
-        <div class="iq-card-body">
-            <div id="report-chart-04"></div>
-        </div>
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-        <div class="iq-card-header d-flex justify-content-between">
-            <div class="iq-header-title">
-                <h4 class="card-title">Active Instances</h4>
-            </div>
-            <div class="iq-card-header-toolbar d-flex align-items-center">
-                <div class="dropdown">
-                    <span class="dropdown-toggle text-primary" id="dropdownMenuButton2" data-toggle="dropdown">
-                        <i class="ri-more-2-fill"></i>
-                    </span>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
-                        <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                        <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                        <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                    </div>
-                </div>
+                <h4 class="card-title">Perangkat Jaringan</h4>
             </div>
         </div>
         <div class="iq-card-body">
             <div class="table-responsive">
-                <table class="table mb-0 table-borderless tbl-server-info">
+                <table class="table mb-0 table-borderless">
                     <thead>
                         <tr>
-                            <th scope="col">Servers</th>
-                            <th scope="col"></th>
+                            <th scope="col">Perangkat</th>
+                            <th scope="col">Status</th>
                             <th scope="col">IP Address</th>
-                            <th scope="col">Created</th>
-                            <th scope="col">Tag</th>
-                            <th scope="col">Provider</th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <div class="avatar-40 text-center rounded-circle iq-bg-danger position-relative">
-                                    <span class="font-size-20 align-item-center"><i class="fa fa-user" aria-hidden="true"></i><span class="bg-success dots"></span></span>
-                                </div>
-                            </td>
-                            <td>
-                                <h6>Noveruche Admin</h6>
-                                <span class="text-body font-weight-400">8GB/80GB/SF02-Ubuntu Iconic- jfkakf-daksl...</span>
-                            </td>
-                            <td>192.168.130.26</td>
-                            <td>2 Months ago</td>
-                            <td>
-                                <div class="text-danger">Web Server</div>
-                            </td>
-                            <td>Indioserver</td>
-                            <td>
-                                <span class="text-black font-size-24" id="dropdownMenuButton3">
-                                    <i class="ri-more-fill"></i>
-                                </span>
-                            </td>
+                            <td>Router Utama</td>
+                            <td><span class="badge badge-primary">Online</span></td>
+                            <td>192.168.1.1</td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="avatar-40 text-center rounded-circle iq-bg-danger position-relative">
-                                    <span class="font-size-20 align-item-center"><i class="fa fa-user" aria-hidden="true"></i><span class="bg-success dots"></span></span>
-                                </div>
-                            </td>
-                            <td>
-                                <h6>Developing Hier</h6>
-                                <span class="text-body font-weight-400">8GB/80GB/SF02-Ubuntu Iconic- jfkakf-daksl...</span>
-                            </td>
-                            <td>192.168.130.26</td>
-                            <td>4 Months ago</td>
-                            <td>
-                                <div class="text-primary">Desky</div>
-                            </td>
-                            <td>Jeniorde</td>
-                            <td>
-                                <span class="text-black font-size-24" id="dropdownMenuButton4">
-                                    <i class="ri-more-fill"></i>
-                                </span>
-                            </td>
+                            <td>Switch Lab Komputer</td>
+                            <td><span class="badge badge-primary">Online</span></td>
+                            <td>192.168.1.2</td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="avatar-40 text-center rounded-circle iq-bg-danger position-relative">
-                                    <span class="font-size-20 align-item-center"><i class="fa fa-user" aria-hidden="true"></i><span class="bg-success dots"></span></span>
-                                </div>
-                            </td>
-                            <td>
-                                <h6>Nalurel Dilam</h6>
-                                <span class="text-body font-weight-400">8GB/80GB/SF02-Ubuntu Iconic- jfkakf-daksl...</span>
-                            </td>
-                            <td>192.168.130.26</td>
-                            <td>5 Months ago</td>
-                            <td>
-                                <div class="text-success">Software</div>
-                            </td>
-                            <td>Walikarsi</td>
-                            <td>
-                                <span class="text-black font-size-24" id="dropdownMenuButton5">
-                                    <i class="ri-more-fill"></i>
-                                </span>
-                            </td>
+                            <td>AP Perpustakaan</td>
+                            <td><span class="badge badge-danger">Offline</span></td>
+                            <td>192.168.1.3</td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="avatar-40 text-center rounded-circle iq-bg-danger position-relative">
-                                    <span class="font-size-20 align-item-center"><i class="fa fa-user" aria-hidden="true"></i><span class="bg-success dots"></span></span>
-                                </div>
-                            </td>
-                            <td>
-                                <h6>Nariokali Borji</h6>
-                                <span class="text-body font-weight-400">8GB/80GB/SF02-Ubuntu Iconic- jfkakf-daksl...</span>
-                            </td>
-                            <td>192.168.130.26</td>
-                            <td>6 Months ago</td>
-                            <td>
-                                <div class="text-primary">Innohouse</div>
-                            </td>
-                            <td>Leoharshan</td>
-                            <td>
-                                <span class="text-black font-size-24" id="dropdownMenuButton6">
-                                    <i class="ri-more-fill"></i>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="avatar-40 text-center rounded-circle iq-bg-danger position-relative">
-                                    <span class="font-size-20 align-item-center"><i class="fa fa-user" aria-hidden="true"></i><span class="bg-success dots"></span></span>
-                                </div>
-                            </td>
-                            <td>
-                                <h6>Bulesta Karolin</h6>
-                                <span class="text-body font-weight-400">8GB/80GB/SF02-Ubuntu Iconic- jfkakf-daksl...</span>
-                            </td>
-                            <td>192.168.130.26</td>
-                            <td>6 Months ago</td>
-                            <td>
-                                <div class="text-danger">Rodrigez</div>
-                            </td>
-                            <td>Karilorni</td>
-                            <td>
-                                <span class="text-black font-size-24" id="dropdownMenuButton7">
-                                    <i class="ri-more-fill"></i>
-                                </span>
-                            </td>
+                            <td>AP Guru</td>
+                            <td><span class="badge badge-primary">Online</span></td>
+                            <td>192.168.1.4</td>
                         </tr>
                     </tbody>
                 </table>
@@ -557,4 +256,176 @@
         </div>
     </div>
 </div>
+
+<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+    <div class="iq-card-header d-flex justify-content-between">
+        <div class="iq-header-title">
+            <h4 class="card-title">Penggunaan Bandwidth</h4>
+        </div>
+        <div class="iq-card-header-toolbar d-flex align-items-center">
+            <div class="dropdown">
+                <button class="dropdown-toggle dropdown-bg iq-bg-primary" id="bandwidthFilterBtn" data-toggle="dropdown">
+                    Hari Ini<i class="ri-arrow-down-s-line ml-1 text-primary"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right shadow-none" aria-labelledby="bandwidthFilterBtn">
+                    <a class="dropdown-item filter-bandwidth" data-range="daily" href="#">Hari Ini</a>
+                    <a class="dropdown-item filter-bandwidth" data-range="weekly" href="#">Minggu Ini</a>
+                    <a class="dropdown-item filter-bandwidth" data-range="monthly" href="#">Bulan Ini</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="iq-card-body">
+        <div id="iq-bandwidth-chart" style="min-height: 300px;"></div>
+    </div>
+</div>
+
 @endsection
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // =========================
+        // DATA DUMMY
+        // =========================
+        const trafficData = {
+            daily: [22, 28, 26, 35, 40, 45, 38],
+            weekly: [150, 160, 175, 170, 165, 180, 190],
+            monthly: [550, 600, 650, 580, 720, 700, 750]
+        };
+
+        const bandwidthData = {
+            daily: {
+                download: [8, 10, 9.5, 11, 10.8, 12, 11.5],
+                upload: [3, 4, 3.5, 4.2, 4.1, 5, 4.5]
+            },
+            weekly: {
+                download: [70, 75, 78, 80, 85, 82, 90],
+                upload: [30, 32, 28, 34, 31, 36, 33]
+            },
+            monthly: {
+                download: [250, 270, 260, 300, 310, 280, 290],
+                upload: [110, 120, 115, 125, 130, 118, 123]
+            }
+        };
+
+        // =========================
+        // TRAFFIC CHART
+        // =========================
+        const trafficChart = new ApexCharts(document.querySelector("#report-chart-3"), {
+            chart: {
+                type: 'area',
+                height: 300,
+                toolbar: {
+                    show: false
+                }
+            },
+            series: [{
+                name: 'Traffic (MB)',
+                data: trafficData.daily
+            }],
+            xaxis: {
+                categories: ['07:00', '09:00', '11:00', '13:00', '15:00', '17:00', '19:00']
+            },
+            colors: ['#3b76ef'],
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.4,
+                    opacityTo: 0.1,
+                    stops: [0, 100]
+                }
+            },
+            stroke: {
+                curve: 'smooth',
+                width: 3
+            },
+            dataLabels: {
+                enabled: false
+            },
+            tooltip: {
+                y: {
+                    formatter: val => val + " MB"
+                }
+            }
+        });
+        trafficChart.render();
+
+        document.querySelectorAll('.filter-traffic').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const range = this.dataset.range;
+                trafficChart.updateSeries([{
+                    name: 'Traffic (MB)',
+                    data: trafficData[range]
+                }]);
+                document.getElementById('trafficFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
+            });
+        });
+
+        // =========================
+        // BANDWIDTH CHART
+        // =========================
+        const bandwidthChart = new ApexCharts(document.querySelector("#iq-bandwidth-chart"), {
+            chart: {
+                type: 'bar',
+                height: 300,
+                toolbar: {
+                    show: false
+                }
+            },
+            series: [{
+                    name: 'Download',
+                    data: bandwidthData.daily.download
+                },
+                {
+                    name: 'Upload',
+                    data: bandwidthData.daily.upload
+                }
+            ],
+            xaxis: {
+                categories: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
+            },
+            colors: ['#0ac074', '#ff5c75'],
+            plotOptions: {
+                bar: {
+                    borderRadius: 6,
+                    columnWidth: '50%'
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            dataLabels: {
+                enabled: false
+            },
+            tooltip: {
+                y: {
+                    formatter: val => val + " Mbps"
+                }
+            }
+        });
+        bandwidthChart.render();
+
+        document.querySelectorAll('.filter-bandwidth').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const range = this.dataset.range;
+                bandwidthChart.updateSeries([{
+                        name: 'Download',
+                        data: bandwidthData[range].download
+                    },
+                    {
+                        name: 'Upload',
+                        data: bandwidthData[range].upload
+                    }
+                ]);
+                document.getElementById('bandwidthFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
+            });
+        });
+
+    });
+</script>
+@endpush
