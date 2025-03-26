@@ -7,6 +7,8 @@ use App\Http\Controllers\DevicesController;
 use App\Http\Controllers\SystemsController;
 use App\Http\Controllers\DashboardController;
 
+use App\Http\Controllers\SpeedTestController;
+
 Route::get('/login', function () {
     return view('login');
 })->name('login');
@@ -29,6 +31,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/devices',[DevicesController::class,'index'])->name('devices');
     Route::get('/systems',[SystemsController::class,'index'])->name('systems');
     Route::get('/logs',[LogsController::class,'index'])->name('logs');
-    
+    Route::get('/speedtest',[SpeedTestController::class,'index'])->name('speedtest');
 
 });

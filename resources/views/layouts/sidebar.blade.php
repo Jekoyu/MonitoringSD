@@ -17,29 +17,34 @@
 <div id="sidebar-scrollbar">
     <nav class="iq-sidebar-menu">
         <ul id="iq-sidebar-toggle" class="iq-menu">
-        <li class="{{ Request::routeIs('dashboard') ? 'active active-menu' : '' }}">
-    <a href="{{ route('dashboard') }}" class="iq-waves-effect">
-        <i class="las la-house-damage"></i><span>Dashboard</span>
-    </a>
-</li>
+            <li class="{{ Request::routeIs('dashboard') ? 'active active-menu' : '' }}">
+                <a href="{{ route('dashboard') }}" class="iq-waves-effect">
+                    <i class="las la-house-damage"></i><span>Dashboard</span>
+                </a>
+            </li>
 
-<li class="{{ Request::routeIs('devices') ? 'active active-menu' : '' }}">
-    <a href="{{ route('devices') }}" class="iq-waves-effect">
-        <i class="las la-laptop iq-arrow-left"></i><span>Perangkat</span>
-    </a>
-</li>
+            <li class="{{ Request::routeIs('devices') ? 'active active-menu' : '' }}">
+                <a href="{{ route('devices') }}" class="iq-waves-effect">
+                    <i class="las la-laptop iq-arrow-left"></i><span>Perangkat</span>
+                </a>
+            </li>
 
-<li class="{{ Request::routeIs('systems') ? 'active active-menu' : '' }}">
+            <!-- <li class="{{ Request::routeIs('systems') ? 'active active-menu' : '' }}">
     <a href="{{ route('systems') }}" class="iq-waves-effect">
         <i class="las la-cloud-download-alt"></i><span>Sistem Mikrotik</span>
     </a>
-</li>
+</li> -->
 
-<li class="{{ Request::routeIs('logs') ? 'active active-menu' : '' }}">
-    <a href="{{ route('logs') }}" class="iq-waves-effect">
-        <i class="las la-archive"></i><span>Log Aktivitas</span>
-    </a>
-</li>
+            <li class="{{ Request::routeIs('logs') ? 'active active-menu' : '' }}">
+                <a href="{{ route('logs') }}" class="iq-waves-effect">
+                    <i class="las la-archive"></i><span>Log Aktivitas</span>
+                </a>
+                </li>
+                <li class="{{ Request::routeIs('logs') ? 'active active-menu' : '' }}">
+                    <a href="{{ route('speedtest') }}" class="iq-waves-effect">
+                        <i class="las la-archive"></i><span>Tes Kecepatan </span>
+                    </a>
+                </li>
 
 
         </ul>

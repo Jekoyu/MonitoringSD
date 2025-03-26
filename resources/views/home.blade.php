@@ -316,7 +316,7 @@
         const trafficChart = new ApexCharts(document.querySelector("#report-chart-3"), {
             chart: {
                 type: 'area',
-                height: 300,
+                height: 200,
                 toolbar: {
                     show: false
                 }
