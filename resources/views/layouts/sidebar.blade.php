@@ -39,12 +39,12 @@
                 <a href="{{ route('logs') }}" class="iq-waves-effect">
                     <i class="las la-archive"></i><span>Log Aktivitas</span>
                 </a>
-                </li>
-                <li class="{{ Request::routeIs('logs') ? 'active active-menu' : '' }}">
-                    <a href="{{ route('speedtest') }}" class="iq-waves-effect">
-                        <i class="las la-archive"></i><span>Tes Kecepatan </span>
-                    </a>
-                </li>
+            </li>
+            <li class="{{ Request::routeIs('speedtest') ? 'active active-menu' : '' }}">
+                <a href="{{ route('speedtest') }}" class="iq-waves-effect">
+                <i class="las la-tachometer-alt"></i><span>Tes Kecepatan </span>
+                </a>
+            </li>
 
 
         </ul>
