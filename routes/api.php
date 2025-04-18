@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MikrotikApiController;
 
 Route::prefix('mikrotik')->group(function () {
-    Route::get('/interfaces', [MikrotikApiController::class, 'interfaces']);
-    Route::get('/traffic/{interface}', [MikrotikApiController::class, 'traffic']);
-    Route::get('/arp', [MikrotikApiController::class, 'arp']);
-    Route::get('/dhcp-leases', [MikrotikApiController::class, 'dhcpLeases']);
-    Route::get('/resource', [MikrotikApiController::class, 'resource']);
-    Route::get('/logs', [MikrotikApiController::class, 'logs']);
-    Route::get('/system-identity', [MikrotikApiController::class, 'systemIdentity']);
+    Route::get('/interfaces', [MikrotikApiController::class, 'interfaces'])->name('api.interfaces');
+    Route::get('/traffic/{interface}', [MikrotikApiController::class, 'traffic'])->name('api.traffic');
+    Route::get('/arp', [MikrotikApiController::class, 'arp'])->name('api.arp');
+    Route::get('/dhcp-leases', [MikrotikApiController::class, 'dhcpLeases'])->name('api.dhcp-leases');
+    Route::get('/resource', [MikrotikApiController::class, 'resource'])->name('api.resource');
+    Route::get('/logs', [MikrotikApiController::class, 'logs'])->name('api.logs');
+    Route::get('/system-identity', [MikrotikApiController::class, 'systemIdentity'])->name('api.system-identity');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
