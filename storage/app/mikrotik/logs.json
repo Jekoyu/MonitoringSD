@@ -1,0 +1,326 @@
+[
+    {
+        ".id": "*0",
+        "time": "13:18:48",
+        "topics": "system,error,critical",
+        "message": "router rebooted without proper shutdown, probably power outage"
+    },
+    {
+        ".id": "*1",
+        "time": "13:19:09",
+        "topics": "interface,info",
+        "message": "ether2 link up (speed 1G, full duplex)"
+    },
+    {
+        ".id": "*2",
+        "time": "13:19:12",
+        "topics": "dhcp,info",
+        "message": "dhcp1 assigned 192.168.10.15 to 10:E7:C6:F5:E5:8E"
+    },
+    {
+        ".id": "*3",
+        "time": "13:19:15",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*4",
+        "time": "13:19:15",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*5",
+        "time": "13:19:15",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*6",
+        "time": "13:19:15",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*7",
+        "time": "13:19:15",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*8",
+        "time": "13:19:15",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*9",
+        "time": "13:19:15",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*A",
+        "time": "13:19:15",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*B",
+        "time": "13:19:25",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*C",
+        "time": "13:19:26",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*D",
+        "time": "13:19:34",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*E",
+        "time": "13:19:34",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*F",
+        "time": "13:19:49",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*10",
+        "time": "13:19:49",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*11",
+        "time": "13:19:57",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*12",
+        "time": "13:19:57",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*13",
+        "time": "13:20:08",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*14",
+        "time": "13:20:08",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*15",
+        "time": "13:20:15",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*16",
+        "time": "13:20:15",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*17",
+        "time": "13:20:28",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*18",
+        "time": "13:20:28",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*19",
+        "time": "13:21:01",
+        "topics": "interface,info",
+        "message": "ether2 link down"
+    },
+    {
+        ".id": "*1A",
+        "time": "13:21:05",
+        "topics": "interface,info",
+        "message": "ether2 link up (speed 1G, full duplex)"
+    },
+    {
+        ".id": "*1B",
+        "time": "13:21:20",
+        "topics": "interface,info",
+        "message": "ether2 link down"
+    },
+    {
+        ".id": "*1C",
+        "time": "13:21:23",
+        "topics": "interface,info",
+        "message": "ether2 link up (speed 1G, full duplex)"
+    },
+    {
+        ".id": "*1D",
+        "time": "13:21:45",
+        "topics": "interface,info",
+        "message": "ether2 link down"
+    },
+    {
+        ".id": "*1E",
+        "time": "13:22:03",
+        "topics": "interface,info",
+        "message": "ether2 link up (speed 100M, full duplex)"
+    },
+    {
+        ".id": "*1F",
+        "time": "13:22:04",
+        "topics": "dhcp,info",
+        "message": "dhcp1 deassigned 192.168.10.15 from 10:E7:C6:F5:E5:8E"
+    },
+    {
+        ".id": "*20",
+        "time": "13:22:04",
+        "topics": "dhcp,info",
+        "message": "dhcp1 assigned 192.168.10.15 to 10:E7:C6:F5:E5:8E"
+    },
+    {
+        ".id": "*21",
+        "time": "13:23:50",
+        "topics": "interface,info",
+        "message": "ether2 link down"
+    },
+    {
+        ".id": "*22",
+        "time": "13:32:04",
+        "topics": "dhcp,info",
+        "message": "dhcp1 deassigned 192.168.10.15 from 10:E7:C6:F5:E5:8E"
+    },
+    {
+        ".id": "*23",
+        "time": "13:34:33",
+        "topics": "interface,info",
+        "message": "ether2 link up (speed 100M, full duplex)"
+    },
+    {
+        ".id": "*24",
+        "time": "13:34:35",
+        "topics": "dhcp,info",
+        "message": "dhcp1 assigned 192.168.10.15 to 10:E7:C6:F5:E5:8E"
+    },
+    {
+        ".id": "*25",
+        "time": "13:35:19",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*26",
+        "time": "13:35:19",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*27",
+        "time": "13:35:35",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*28",
+        "time": "13:35:35",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*29",
+        "time": "13:36:14",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*2A",
+        "time": "13:36:14",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*2B",
+        "time": "13:36:39",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*2C",
+        "time": "13:36:39",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*2D",
+        "time": "13:36:54",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*2E",
+        "time": "13:36:54",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*2F",
+        "time": "13:37:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*30",
+        "time": "13:37:32",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*31",
+        "time": "13:38:20",
+        "topics": "interface,info",
+        "message": "ether2 link down"
+    },
+    {
+        ".id": "*32",
+        "time": "13:44:35",
+        "topics": "dhcp,info",
+        "message": "dhcp1 deassigned 192.168.10.15 from 10:E7:C6:F5:E5:8E"
+    },
+    {
+        ".id": "*33",
+        "time": "14:24:12",
+        "topics": "interface,info",
+        "message": "ether2 link up (speed 100M, full duplex)"
+    },
+    {
+        ".id": "*34",
+        "time": "14:24:15",
+        "topics": "dhcp,info",
+        "message": "dhcp1 assigned 192.168.10.15 to 10:E7:C6:F5:E5:8E"
+    },
+    {
+        ".id": "*35",
+        "time": "14:24:21",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    }
+]
