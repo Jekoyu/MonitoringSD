@@ -94,13 +94,13 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Download</h5>
-                    <h3 class="d-flex text-primary"> 10 Mbps<i class="ri-arrow-up-line"></i></h3>
+                    <h3 class="d-flex text-primary"> <?= $ether2['rx-byte']?><i class="ri-arrow-up-line"></i></h3>
                 </div>
-                <p class="mb-0 mt-1">Max 15 Mbps</p>
+               
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-primary" data-percent="67"></span>
+                            <span class="bg-primary" data-percent="<?= $ether2['rx-byte']?>"></span>
                         </div>
                     </div>
                 </div>
@@ -115,13 +115,13 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Upload</h5>
-                    <h3 class="d-flex text-danger"> 5 Mbps<i class="ri-arrow-up-line"></i></h3>
+                    <h3 class="d-flex text-danger"> <?= $ether2['tx-byte']?><i class="ri-arrow-up-line"></i></h3>
                 </div>
-                <p class="mb-0 mt-1">Max 10 Mbps</p>
+                
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-danger" data-percent="50"></span>
+                            <span class="bg-danger" data-percent="<?= $ether2['tx-byte']?>"></span>
                         </div>
                     </div>
                 </div>
@@ -136,9 +136,9 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Uptime</h5>
-                    <h3 class="d-flex text-success"> 99.8%<i class="ri-arrow-up-line"></i></h3>
+                    <h3 class="d-flex text-success"> <?= $uptime?><i class="ri-arrow-up-line"></i></h3>
                 </div>
-                <p class="mb-0 mt-1">7 Hari Terakhir</p>
+               
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
@@ -157,9 +157,9 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Latency</h5>
-                    <h3 class="d-flex text-warning"> 28 ms<i class="ri-arrow-down-line"></i></h3>
+                    <h3 class="d-flex text-warning"> <?= $ether2['latency']?>ms<i class="ri-arrow-down-line"></i></h3>
                 </div>
-                <p class="mb-0 mt-1">Rata-rata</p>
+               
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
@@ -198,7 +198,7 @@
     </div>
 </div>
 
-<div class="col-lg-4">
+<!-- <div class="col-lg-4">
     <div class="iq-card iq-card-block iq-card-stretch iq-card-height bg-danger rounded">
         <div class="iq-card-body">
             <div class="d-flex align-items-center mb-3">
@@ -211,7 +211,7 @@
             <button type="submit" class="btn w-100 btn-white mt-4 text-danger">Detail Masalah</button>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="col-lg-6">
     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
@@ -292,9 +292,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
-        // =========================
-        // DATA DUMMY
-        // =========================
+
         const trafficData = {
             daily: [22, 28, 26, 35, 40, 45, 38],
             weekly: [150, 160, 175, 170, 165, 180, 190],
