@@ -10,7 +10,8 @@
             <div class="box-image float-right">
                 <img class="rounded img-fluid" src="{{ asset('assets/images/page-img/37.png') }}" alt="network">
             </div>
-            <h4 class="d-block mb-3 ">Monitoring Jaringan SD</h4>
+            <h4 class="d-block mb-3 ">Monitoring Jaringan 
+                SD Negeri Banguntapan</h4>
             <p class="d-inline-block welcome-text ">
                 <i class="ri-information-line mr-2 text-warning"></i>
                 Sistem pemantauan jaringan sekolah dasar. Pantau status koneksi, bandwidth, dan perangkat jaringan.
@@ -18,7 +19,7 @@
             <div class="d-flex flex-wrap mt-3">
                 <div class="mr-3 mb-2">
                     <span class="badge iq-bg-warning ">
-                        <i class="ri-wifi-line mr-1"></i> 42 Perangkat Online
+                        <i class="ri-wifi-line mr-1"></i> 0 Perangkat Online
                     </span>
                 </div>
                 <div class="mr-3 mb-2">
@@ -47,7 +48,7 @@
                             </div>
                             <div class="media-support-info ml-3">
                                 <h5>Perangkat Aktif</h5>
-                                <p class="mb-0">42 Terhubung</p>
+                                <p class="mb-0">5 Terhubung</p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +68,7 @@
                             </div>
                             <div class="media-support-info ml-3">
                                 <h5>Gangguan</h5>
-                                <p class="mb-0">1 Perangkat Offline</p>
+                                <p class="mb-0">5 Perangkat Offline</p>
                             </div>
                         </div>
                     </div>
@@ -231,24 +232,29 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Router Utama</td>
-                            <td><span class="badge badge-primary">Online</span></td>
-                            <td>192.168.1.1</td>
+                            <td>ether1</td>
+                            <td><span class="badge badge-primary">Offline</span></td>
+                            <td>--</td>
                         </tr>
                         <tr>
-                            <td>Switch Lab Komputer</td>
-                            <td><span class="badge badge-primary">Online</span></td>
-                            <td>192.168.1.2</td>
+                            <td>ether2</td>
+                            <td><span class="badge badge-primary">Offline</span></td>
+                            <td>--</td>
                         </tr>
                         <tr>
-                            <td>AP Perpustakaan</td>
+                            <td>ether3</td>
                             <td><span class="badge badge-danger">Offline</span></td>
-                            <td>192.168.1.3</td>
+                            <td>--</td>
                         </tr>
                         <tr>
-                            <td>AP Guru</td>
-                            <td><span class="badge badge-primary">Online</span></td>
-                            <td>192.168.1.4</td>
+                            <td>ether4</td>
+                            <td><span class="badge badge-primary">Offline</span></td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>ether5</td>
+                            <td><span class="badge badge-primary">Offline</span></td>
+                            <td>--</td>
                         </tr>
                     </tbody>
                 </table>
