@@ -19,9 +19,6 @@ class DashboardController extends Controller
     
         $uptime = $systemInfo['uptime'];
 
-
-
-
         $json = Storage::get('mikrotik/speed.json');
         $data = json_decode($json, true);
     

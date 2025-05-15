@@ -49,7 +49,7 @@
 <script>
     $('#devices-table').DataTable({
         ajax: {
-            url: '{{ route("api.interfaces") }}', // ganti sesuai rute API kamu
+            url: '{{ route("api.interfaces") }}', 
             dataSrc: 'data'
         },
         columns: [{

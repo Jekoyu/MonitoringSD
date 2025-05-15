@@ -10,7 +10,7 @@
             <div class="box-image float-right">
                 <img class="rounded img-fluid" src="{{ asset('assets/images/page-img/37.png') }}" alt="network">
             </div>
-            <h4 class="d-block mb-3 ">Monitoring Jaringan 
+            <h4 class="d-block mb-3 ">Monitoring Jaringan
                 SD Negeri Banguntapan</h4>
             <p class="d-inline-block welcome-text ">
                 <i class="ri-information-line mr-2 text-warning"></i>
@@ -18,13 +18,13 @@
             </p>
             <div class="d-flex flex-wrap mt-3">
                 <div class="mr-3 mb-2">
-                    <span class="badge iq-bg-warning ">
-                        <i class="ri-wifi-line mr-1"></i> 0 Perangkat Online
+                    <span class="badge iq-bg-warning" id="onlineCount">
+                        <i class="ri-wifi-line mr-1"></i> ... Perangkat Online
                     </span>
                 </div>
                 <div class="mr-3 mb-2">
-                    <span class="badge iq-bg-danger ">
-                        <i class="ri-alarm-warning-line mr-1"></i> 1 Gangguan
+                    <span class="badge iq-bg-danger" id="offlineCount">
+                        <i class="ri-alarm-warning-line mr-1"></i> ... Gangguan
                     </span>
                 </div>
                 <div class="mb-2">
@@ -48,14 +48,14 @@
                             </div>
                             <div class="media-support-info ml-3">
                                 <h5>Perangkat Aktif</h5>
-                                <p class="mb-0">5 Terhubung</p>
+                                <p class="mb-0" id="deviceOnlineText">0 Terhubung</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3 p-0">
                         <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                             <div class="iq-progress-bar">
-                                <span class="bg-primary" data-percent="85"></span>
+                                <span class="bg-primary" id="deviceOnlineBar" data-percent="0"></span>
                             </div>
                         </div>
                     </div>
@@ -68,14 +68,14 @@
                             </div>
                             <div class="media-support-info ml-3">
                                 <h5>Gangguan</h5>
-                                <p class="mb-0">5 Perangkat Offline</p>
+                                <p class="mb-0" id="deviceOfflineText">0 Perangkat Offline</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3 p-0">
                         <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                             <div class="iq-progress-bar">
-                                <span class="bg-danger" data-percent="15"></span>
+                                <span class="bg-danger" id="deviceOfflineBar" data-percent="0"></span>
                             </div>
                         </div>
                     </div>
@@ -94,13 +94,13 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Download</h5>
-                    <h3 class="d-flex text-primary"> <?= $ether2['rx-byte']?><i class="ri-arrow-up-line"></i></h3>
+                    <h3 class="d-flex text-primary"> <?= $ether2['rx-byte'] ?><i class="ri-arrow-up-line"></i></h3>
                 </div>
-               
+
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-primary" data-percent="<?= $ether2['rx-byte']?>"></span>
+                            <span class="bg-primary" data-percent="<?= $ether2['rx-byte'] ?>"></span>
                         </div>
                     </div>
                 </div>
@@ -115,13 +115,13 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Upload</h5>
-                    <h3 class="d-flex text-danger"> <?= $ether2['tx-byte']?><i class="ri-arrow-up-line"></i></h3>
+                    <h3 class="d-flex text-danger"> <?= $ether2['tx-byte'] ?><i class="ri-arrow-up-line"></i></h3>
                 </div>
-                
+
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-danger" data-percent="<?= $ether2['tx-byte']?>"></span>
+                            <span class="bg-danger" data-percent="<?= $ether2['tx-byte'] ?>"></span>
                         </div>
                     </div>
                 </div>
@@ -136,9 +136,9 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Uptime</h5>
-                    <h3 class="d-flex text-success"> <?= $uptime?><i class="ri-arrow-up-line"></i></h3>
+                    <h3 class="d-flex text-success"> <?= $uptime ?></h3>
                 </div>
-               
+
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
@@ -157,9 +157,9 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Latency</h5>
-                    <h3 class="d-flex text-warning"> <?= $ether2['latency']?>ms<i class="ri-arrow-down-line"></i></h3>
+                    <h3 class="d-flex text-warning"> <?= $ether2['latency'] ?>ms<i class="ri-arrow-down-line"></i></h3>
                 </div>
-               
+
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
@@ -193,7 +193,7 @@
         </div>
         <div class="iq-card-body">
             <!-- <div id="report-chart-02" ></div> -->
-             <div id="report-chart-3"></div>
+            <div id="report-chart-3"></div>
         </div>
     </div>
 </div>
@@ -221,41 +221,19 @@
             </div>
         </div>
         <div class="iq-card-body">
-            <div class="table-responsive">
-                <table class="table mb-0 table-borderless">
+            <div class="">
+                <table id="devices-table" class="table mb-0 table-borderless">
                     <thead>
                         <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Perangkat</th>
                             <th scope="col">Status</th>
-                            <th scope="col">IP Address</th>
+                            <th scope="col">Mac Address</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>ether1</td>
-                            <td><span class="badge badge-primary">Offline</span></td>
-                            <td>--</td>
-                        </tr>
-                        <tr>
-                            <td>ether2</td>
-                            <td><span class="badge badge-primary">Offline</span></td>
-                            <td>--</td>
-                        </tr>
-                        <tr>
-                            <td>ether3</td>
-                            <td><span class="badge badge-danger">Offline</span></td>
-                            <td>--</td>
-                        </tr>
-                        <tr>
-                            <td>ether4</td>
-                            <td><span class="badge badge-primary">Offline</span></td>
-                            <td>--</td>
-                        </tr>
-                        <tr>
-                            <td>ether5</td>
-                            <td><span class="badge badge-primary">Offline</span></td>
-                            <td>--</td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -288,6 +266,64 @@
 
 @endsection
 @push('scripts')
+<script>
+    function updateDeviceSummary(data) {
+        const maxDevices = 5; 
+        const onlineCount = data.filter(item => item.running === "true").length;
+        const offlineCount = data.filter(item => item.running !== "true").length;
+        document.getElementById("onlineCount").innerHTML =
+            `<i class="ri-wifi-line mr-1"></i> ${onlineCount} Perangkat Online`;
+
+        document.getElementById("offlineCount").innerHTML =
+            `<i class="ri-alarm-warning-line mr-1"></i> ${offlineCount} Gangguan`;
+
+        document.getElementById("deviceOnlineText").innerText = `${onlineCount} Terhubung`;
+        document.getElementById("deviceOfflineText").innerText = `${offlineCount} Perangkat Offline`;
+        const onlinePercent = Math.round((onlineCount / maxDevices) * 100);
+        const offlinePercent = 100 - onlinePercent;
+
+        document.getElementById("deviceOnlineBar").style.width = onlinePercent + "%";
+        document.getElementById("deviceOnlineBar").setAttribute("data-percent", onlinePercent);
+
+        document.getElementById("deviceOfflineBar").style.width = offlinePercent + "%";
+        document.getElementById("deviceOfflineBar").setAttribute("data-percent", offlinePercent);
+    }
+
+
+    $('#devices-table').DataTable({
+        ajax: {
+            url: '{{ route("api.interfaces") }}',
+            dataSrc: function(json) {
+                updateDeviceSummary(json.data);
+                return json.data;
+            }
+        },
+        columns: [{
+                data: null,
+                render: function(data, type, row, meta) {
+                    return meta.row + 1;
+                }
+            },
+            {
+                data: 'name'
+            },
+            {
+                data: 'running',
+                render: function(data) {
+                    return data === 'true' ?
+                        '<span class="badge badge-success">Online</span>' :
+                        '<span class="badge badge-danger">Offline</span>';
+                }
+            },
+            {
+                data: 'mac-address'
+            },
+
+        ],
+        responsive: true,
+
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -432,4 +468,5 @@
 
     });
 </script>
+
 @endpush
