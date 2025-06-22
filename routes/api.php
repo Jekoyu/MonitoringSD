@@ -23,6 +23,8 @@ Route::prefix('mikrotik')->group(function () {
     Route::get('/resource', [MikrotikApiController::class, 'resource'])->name('api.resource');
     Route::get('/logs', [MikrotikApiController::class, 'logs'])->name('api.logs');
     Route::get('/system-identity', [MikrotikApiController::class, 'systemIdentity'])->name('api.system-identity');
+    Route::get('/traffic-history', [MikrotikApiController::class, 'trafficHistory']);
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

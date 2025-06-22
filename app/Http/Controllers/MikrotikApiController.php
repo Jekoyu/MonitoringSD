@@ -101,4 +101,49 @@ class MikrotikApiController extends Controller
     {
         return $this->fetchAndCache('getSystemIdentity', 'mikrotik/identity.json');
     }
+    public function trafficHistory()
+    {
+        $logs = json_decode(Storage::get('mikrotik/traffic_logs.json'), true);
+        $range = request()->get('range', 'daily');
+
+        $grouped = [];
+
+        foreach ($logs as $i => $entry) {
+            $timestamp = \Carbon\Carbon::parse($entry['timestamp']);
+
+            $key = match ($range) {
+                'daily' => $timestamp->format('H:00'),
+                'weekly' => $timestamp->startOfWeek()->format('Y-m-d'),
+                'monthly' => $timestamp->format('Y-m'),
+                default => $timestamp->format('H:00')
+            };
+
+            if (!isset($grouped[$key])) {
+                $grouped[$key] = ['rx' => 0, 'tx' => 0];
+            }
+
+            if ($i > 0 && $logs[$i - 1]['interface'] === $entry['interface']) {
+                $prev = $logs[$i - 1];
+
+                $grouped[$key]['rx'] += max(0, $entry['rx'] - $prev['rx']);
+                $grouped[$key]['tx'] += max(0, $entry['tx'] - $prev['tx']);
+            }
+        }
+
+        // Byte → Mbps (per 5 menit ≈ 300s)
+        $trafficData = [];
+        foreach ($grouped as $key => $v) {
+            $totalMb = round(($v['rx'] + $v['tx']) / (1024 * 1024), 2);
+            $trafficData[] = [
+                'time' => $key,
+                'traffic' => $totalMb
+            ];
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'categories' => array_column($trafficData, 'time'),
+            'traffic' => array_column($trafficData, 'traffic')
+        ]);
+    }
 }

@@ -350,9 +350,7 @@
             }
         };
 
-        // =========================
-        // TRAFFIC CHART
-        // =========================
+       
         const trafficChart = new ApexCharts(document.querySelector("#report-chart-3"), {
             chart: {
                 type: 'area',
