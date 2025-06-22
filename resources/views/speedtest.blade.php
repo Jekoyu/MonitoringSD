@@ -11,8 +11,8 @@
             <!-- Dropdown untuk memilih IP (hiasan + trigger reset iframe) -->
             <label for="ipSelect" class="mr-2 font-weight-bold">Pilih Perangkat:</label>
             <select id="ipSelect" class="form-control d-inline-block w-auto">
-                <option value="192.168.10.1">192.168.10.1</option>
-                <option value="192.168.20.1">192.168.20.1</option>
+                <option value="192.168.10.1">192.168.10.15</option>
+                <option value="192.168.20.1">192.168.20.15</option>
             </select>
         </div>
 
