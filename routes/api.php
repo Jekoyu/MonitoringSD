@@ -24,6 +24,8 @@ Route::prefix('mikrotik')->group(function () {
     Route::get('/logs', [MikrotikApiController::class, 'logs'])->name('api.logs');
     Route::get('/system-identity', [MikrotikApiController::class, 'systemIdentity'])->name('api.system-identity');
     Route::get('/traffic-history', [MikrotikApiController::class, 'trafficHistory']);
+    Route::get('/bandwidth-history', [MikrotikApiController::class, 'bandwidthHistory']);
+
 
 });
 

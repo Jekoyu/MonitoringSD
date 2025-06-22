@@ -326,46 +326,85 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
+    const dummyTrafficData = {
+        daily: [22, 28, 26, 35, 40, 45, 38],
+        weekly: [150, 160, 175, 170, 165, 180, 190],
+        monthly: [550, 600, 650, 580, 720, 700, 750]
+    };
 
-        const trafficData = {
-            daily: [22, 28, 26, 35, 40, 45, 38],
-            weekly: [150, 160, 175, 170, 165, 180, 190],
-            monthly: [550, 600, 650, 580, 720, 700, 750]
-        };
+    const dummyBandwidthData = {
+        daily: {
+            download: [8, 10, 9.5, 11, 10.8, 12, 11.5],
+            upload: [3, 4, 3.5, 4.2, 4.1, 5, 4.5]
+        },
+        weekly: {
+            download: [70, 75, 78, 80, 85, 82, 90],
+            upload: [30, 32, 28, 34, 31, 36, 33]
+        },
+        monthly: {
+            download: [250, 270, 260, 300, 310, 280, 290],
+            upload: [110, 120, 115, 125, 130, 118, 123]
+        }
+    };
 
-        const bandwidthData = {
-            daily: {
-                download: [8, 10, 9.5, 11, 10.8, 12, 11.5],
-                upload: [3, 4, 3.5, 4.2, 4.1, 5, 4.5]
-            },
-            weekly: {
-                download: [70, 75, 78, 80, 85, 82, 90],
-                upload: [30, 32, 28, 34, 31, 36, 33]
-            },
-            monthly: {
-                download: [250, 270, 260, 300, 310, 280, 290],
-                upload: [110, 120, 115, 125, 130, 118, 123]
-            }
-        };
+    // ===============================
+    // FETCH FUNCTIONS (with fallback)
+    // ===============================
+    async function fetchTrafficData(range) {
+        try {
+            const res = await fetch(`/api/mikrotik/traffic-history?range=${range}`);
+            if (!res.ok) throw new Error("HTTP Error");
+            const data = await res.json();
+            return {
+                categories: data.categories || [],
+                traffic: data.traffic || []
+            };
+        } catch (e) {
+            console.warn("Gagal fetch traffic, gunakan dummy.");
+            const categories = Array(dummyTrafficData[range].length).fill('').map((_, i) => `P${i + 1}`);
+            return {
+                categories: categories,
+                traffic: dummyTrafficData[range]
+            };
+        }
+    }
 
-       
-        const trafficChart = new ApexCharts(document.querySelector("#report-chart-3"), {
-            chart: {
-                type: 'area',
-                height: 200,
-                toolbar: {
-                    show: false
-                }
-            },
-            series: [{
-                name: 'Traffic (MB)',
-                data: trafficData.daily
-            }],
-            xaxis: {
-                categories: ['07:00', '09:00', '11:00', '13:00', '15:00', '17:00', '19:00']
-            },
+    async function fetchBandwidthData(range) {
+        try {
+            const res = await fetch(`/api/mikrotik/bandwidth-history?range=${range}`);
+            if (!res.ok) throw new Error("HTTP Error");
+            const data = await res.json();
+            return {
+                categories: data.categories || [],
+                download: data.download || [],
+                upload: data.upload || []
+            };
+        } catch (e) {
+            console.warn("Gagal fetch bandwidth, gunakan dummy.");
+            const categories = Array(dummyBandwidthData[range].download.length).fill('').map((_, i) => `P${i + 1}`);
+            return {
+                categories: categories,
+                download: dummyBandwidthData[range].download,
+                upload: dummyBandwidthData[range].upload
+            };
+        }
+    }
+
+    // =======================================
+    // INITIAL RENDER DARI DATA 'daily'
+    // =======================================
+    let trafficChart, bandwidthChart;
+
+    async function initCharts() {
+        const traffic = await fetchTrafficData('daily');
+        const bandwidth = await fetchBandwidthData('daily');
+
+        trafficChart = new ApexCharts(document.querySelector("#report-chart-3"), {
+            chart: { type: 'area', height: 200, toolbar: { show: false } },
+            series: [{ name: 'Traffic (MB)', data: traffic.traffic }],
+            xaxis: { categories: traffic.categories },
             colors: ['#3b76ef'],
             fill: {
                 type: 'gradient',
@@ -376,56 +415,19 @@
                     stops: [0, 100]
                 }
             },
-            stroke: {
-                curve: 'smooth',
-                width: 3
-            },
-            dataLabels: {
-                enabled: false
-            },
-            tooltip: {
-                y: {
-                    formatter: val => val + " MB"
-                }
-            }
+            stroke: { curve: 'smooth', width: 3 },
+            dataLabels: { enabled: false },
+            tooltip: { y: { formatter: val => val + " MB" } }
         });
         trafficChart.render();
 
-        document.querySelectorAll('.filter-traffic').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const range = this.dataset.range;
-                trafficChart.updateSeries([{
-                    name: 'Traffic (MB)',
-                    data: trafficData[range]
-                }]);
-                document.getElementById('trafficFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
-            });
-        });
-
-        // =========================
-        // BANDWIDTH CHART
-        // =========================
-        const bandwidthChart = new ApexCharts(document.querySelector("#iq-bandwidth-chart"), {
-            chart: {
-                type: 'bar',
-                height: 300,
-                toolbar: {
-                    show: false
-                }
-            },
-            series: [{
-                    name: 'Download',
-                    data: bandwidthData.daily.download
-                },
-                {
-                    name: 'Upload',
-                    data: bandwidthData.daily.upload
-                }
+        bandwidthChart = new ApexCharts(document.querySelector("#iq-bandwidth-chart"), {
+            chart: { type: 'bar', height: 300, toolbar: { show: false } },
+            series: [
+                { name: 'Download', data: bandwidth.download },
+                { name: 'Upload', data: bandwidth.upload }
             ],
-            xaxis: {
-                categories: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
-            },
+            xaxis: { categories: bandwidth.categories },
             colors: ['#0ac074', '#ff5c75'],
             plotOptions: {
                 bar: {
@@ -433,38 +435,47 @@
                     columnWidth: '50%'
                 }
             },
-            fill: {
-                opacity: 1
-            },
-            dataLabels: {
-                enabled: false
-            },
+            fill: { opacity: 1 },
+            dataLabels: { enabled: false },
             tooltip: {
-                y: {
-                    formatter: val => val + " Mbps"
-                }
+                y: { formatter: val => val + " Mbps" }
             }
         });
         bandwidthChart.render();
+    }
 
-        document.querySelectorAll('.filter-bandwidth').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const range = this.dataset.range;
-                bandwidthChart.updateSeries([{
-                        name: 'Download',
-                        data: bandwidthData[range].download
-                    },
-                    {
-                        name: 'Upload',
-                        data: bandwidthData[range].upload
-                    }
-                ]);
-                document.getElementById('bandwidthFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
-            });
+    initCharts();
+
+    // =======================================
+    // FILTER EVENTS
+    // =======================================
+    document.querySelectorAll('.filter-traffic').forEach(item => {
+        item.addEventListener('click', async function (e) {
+            e.preventDefault();
+            const range = this.dataset.range;
+            const newData = await fetchTrafficData(range);
+            trafficChart.updateOptions({ xaxis: { categories: newData.categories } });
+            trafficChart.updateSeries([{ name: 'Traffic (MB)', data: newData.traffic }]);
+            document.getElementById('trafficFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
         });
-
     });
+
+    document.querySelectorAll('.filter-bandwidth').forEach(item => {
+        item.addEventListener('click', async function (e) {
+            e.preventDefault();
+            const range = this.dataset.range;
+            const newData = await fetchBandwidthData(range);
+            bandwidthChart.updateOptions({ xaxis: { categories: newData.categories } });
+            bandwidthChart.updateSeries([
+                { name: 'Download', data: newData.download },
+                { name: 'Upload', data: newData.upload }
+            ]);
+            document.getElementById('bandwidthFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
+        });
+    });
+
+});
 </script>
+
 
 @endpush
