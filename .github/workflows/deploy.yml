@@ -10,24 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan your_server_ip >> ~/.ssh/known_hosts
-
       - name: Deploy to VPS
-        run: |
-          ssh -i ~/.ssh/id_ed25519 root@your_server_ip << 'EOF'
-            cd /var/www/laravel-app
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          script: |
+            cd /var/www/MonitoringSD
             git pull origin main
-            composer install --no-interaction --prefer-dist --optimize-autoloader
+            composer install --no-dev --optimize-autoloader
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
-            chown -R www-data:www-data /var/www/laravel-app
-          EOF
+            chown -R www-data:www-data .
