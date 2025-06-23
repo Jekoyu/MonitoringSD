@@ -38,7 +38,7 @@ class CacheMikrotikData extends Command
         foreach ($dataList as $key => $method) {
             try {
                 $data = $this->mikrotik->{$method}();
-                Cache::put("mikrotik:$key", $data, now()->addMinutes(5));
+                Cache::put("mikrotik:$key", json_encode($data), now()->addMinutes(5));
                 $this->info("✔ Cached $key to Redis.");
             } catch (\Exception $e) {
                 $this->warn("✘ Gagal ambil $key: " . $e->getMessage());

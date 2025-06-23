@@ -349,11 +349,11 @@
         fetchUptime();
         fetchRealtimeTraffic();
 
-        setInterval(fetchLatency, 500);
+        setInterval(fetchLatency, 1000);
         setInterval(() => {
             updateUptimeDisplay();
-        }, 500);
-        setInterval(fetchRealtimeTraffic, 500);
+        }, 1000);
+        setInterval(fetchRealtimeTraffic, 1000);
     });
 
 
