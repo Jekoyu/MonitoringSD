@@ -54,7 +54,7 @@ class LogMikrotikTraffic extends Command
         }
 
         // Simpan kembali log ke Redis (set TTL opsional jika diinginkan)
-        Cache::put('mikrotik:traffic_logs', $logs, now()->addDays(7));
+        Cache::put('mikrotik:traffic_logs', json_encode($logs), now()->addDays(7));
 
         $this->info("Traffic bandwidth for all online interfaces logged to Redis.");
         \Log::info('mikrotik:log-traffic command run at ' . now());
