@@ -100,7 +100,7 @@ class MikrotikService
             if (!$firstIface) {
                 throw new \Exception("Interface tidak ditemukan untuk ping.");
             }
-            $targetIp = config('mikrotik.gateway_ip', '8.8.8.8');
+            $targetIp = config('mikrotik.gateway_ip', '10.20.20.2');
         }
 
         $query = new Query('/ping');
