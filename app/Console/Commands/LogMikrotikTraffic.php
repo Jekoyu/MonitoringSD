@@ -32,7 +32,8 @@ class LogMikrotikTraffic extends Command
         });
 
         // Ambil log lama dari Redis
-        $logs = Cache::get('mikrotik:traffic_logs', []);
+        $logs = json_decode(Cache::get('mikrotik:traffic_logs'), true) ?? [];
+
 
         foreach ($onlineInterfaces as $ifaceData) {
             $ifaceName = $ifaceData['name'] ?? null;
