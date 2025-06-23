@@ -13,11 +13,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('mikrotik:log-traffic')
-            ->everyMinute()
+            ->everyFiveMinutes()
             ->withoutOverlapping();
 
         $schedule->command('mikrotik:cache-to-redis')
-            ->everyMinute()
+            ->everyFiveMinutes()
             ->withoutOverlapping();
     }
 
