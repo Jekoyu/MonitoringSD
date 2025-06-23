@@ -52,5 +52,95 @@
         "interface": "ether1",
         "rx_bps": 9216,
         "tx_bps": 10888
+    },
+    {
+        "timestamp": "2025-06-23 16:56:34",
+        "interface": "ether1",
+        "rx_bps": 48152,
+        "tx_bps": 94896
+    },
+    {
+        "timestamp": "2025-06-23 16:56:34",
+        "interface": "ether3",
+        "rx_bps": 25768,
+        "tx_bps": 17448
+    },
+    {
+        "timestamp": "2025-06-23 16:56:41",
+        "interface": "ether1",
+        "rx_bps": 92848,
+        "tx_bps": 182376
+    },
+    {
+        "timestamp": "2025-06-23 16:56:41",
+        "interface": "ether3",
+        "rx_bps": 53416,
+        "tx_bps": 33776
+    },
+    {
+        "timestamp": "2025-06-23 16:56:50",
+        "interface": "ether1",
+        "rx_bps": 74392,
+        "tx_bps": 137384
+    },
+    {
+        "timestamp": "2025-06-23 16:56:50",
+        "interface": "ether3",
+        "rx_bps": 49168,
+        "tx_bps": 31584
+    },
+    {
+        "timestamp": "2025-06-23 16:58:30",
+        "interface": "ether1",
+        "rx_bps": 520,
+        "tx_bps": 0
+    },
+    {
+        "timestamp": "2025-06-23 16:58:43",
+        "interface": "ether1",
+        "rx_bps": 22680,
+        "tx_bps": 23240
+    },
+    {
+        "timestamp": "2025-06-23 16:58:57",
+        "interface": "ether1",
+        "rx_bps": 27728,
+        "tx_bps": 71576
+    },
+    {
+        "timestamp": "2025-06-23 16:59:37",
+        "interface": "ether1",
+        "rx_bps": 16456,
+        "tx_bps": 13112
+    },
+    {
+        "timestamp": "2025-06-23 16:59:41",
+        "interface": "ether1",
+        "rx_bps": 4480,
+        "tx_bps": 6344
+    },
+    {
+        "timestamp": "2025-06-23 16:59:45",
+        "interface": "ether1",
+        "rx_bps": 12736,
+        "tx_bps": 11592
+    },
+    {
+        "timestamp": "2025-06-23 16:59:50",
+        "interface": "ether1",
+        "rx_bps": 33104,
+        "tx_bps": 55568
+    },
+    {
+        "timestamp": "2025-06-23 17:00:14",
+        "interface": "ether1",
+        "rx_bps": 296080,
+        "tx_bps": 296648
+    },
+    {
+        "timestamp": "2025-06-23 17:00:42",
+        "interface": "ether1",
+        "rx_bps": 6928,
+        "tx_bps": 7488
     }
 ]
