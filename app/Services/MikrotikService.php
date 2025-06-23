@@ -18,6 +18,7 @@ class MikrotikService
                 'host' => config('mikrotik.host'),
                 'user' => config('mikrotik.user'),
                 'pass' => config('mikrotik.pass'),
+                'timeout' => 60,
             ]);
         } catch (Exception $e) {
             $this->connectionError = 'Gagal membuat koneksi ke Mikrotik: ' . $e->getMessage();
