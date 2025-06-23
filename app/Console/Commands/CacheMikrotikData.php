@@ -46,5 +46,6 @@ class CacheMikrotikData extends Command
                 $this->error("Gagal cache $key: {$e->getMessage()}");
             }
         }
+        \Log::info('mikrotik:chache data command run at ' . now());
     }
 }

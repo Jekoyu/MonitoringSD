@@ -57,5 +57,7 @@ class LogMikrotikTraffic extends Command
 
         Storage::put($filename, json_encode($logs, JSON_PRETTY_PRINT));
         $this->info("Traffic bandwidth for all online interfaces logged.");
+        \Log::info('mikrotik:log-traffic command run at ' . now());
+
     }
 }

@@ -44,7 +44,7 @@
         "mac-address": "CC:F4:11:A0:E9:4F",
         "interface": "ether1",
         "published": "false",
-        "status": "reachable",
+        "status": "stale",
         "invalid": "false",
         "DHCP": "false",
         "dynamic": "true",
