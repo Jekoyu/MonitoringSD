@@ -4,12 +4,12 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\MikrotikService;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 
 class CacheMikrotikData extends Command
 {
-    protected $signature = 'mikrotik:cache-all';
-    protected $description = 'Ambil semua data Mikrotik & cache ke file JSON';
+    protected $signature = 'mikrotik:cache-to-redis';
+    protected $description = 'Ambil semua data Mikrotik dan simpan ke Redis';
 
     protected $mikrotik;
 
@@ -26,26 +26,25 @@ class CacheMikrotikData extends Command
             return;
         }
 
-        // Simpan semua data ke file JSON
         $dataList = [
-            'interfaces'     => ['method' => 'getInterfaces',    'file' => 'mikrotik/interfaces.json'],
-            'arp'            => ['method' => 'getArp',           'file' => 'mikrotik/arp.json'],
-            'dhcp_leases'    => ['method' => 'getDhcpLeases',    'file' => 'mikrotik/dhcp_leases.json'],
-            'resource'       => ['method' => 'getResources',     'file' => 'mikrotik/resource.json'],
-            'logs'           => ['method' => 'getLogs',          'file' => 'mikrotik/logs.json'],
-            'identity'       => ['method' => 'getSystemIdentity','file' => 'mikrotik/identity.json'],
-            // Tambahkan endpoint lain kalau perlu
+            'interfaces'  => 'getInterfaces',
+            'arp'         => 'getArp',
+            'dhcp_leases' => 'getDhcpLeases',
+            'resource'    => 'getResources',
+            'logs'        => 'getLogs',
+            'identity'    => 'getSystemIdentity',
         ];
 
-        foreach ($dataList as $key => $cfg) {
+        foreach ($dataList as $key => $method) {
             try {
-                $data = $this->mikrotik->{$cfg['method']}();
-                Storage::put($cfg['file'], json_encode($data, JSON_PRETTY_PRINT));
-                $this->info("Berhasil cache $key ke {$cfg['file']}");
+                $data = $this->mikrotik->{$method}();
+                Cache::put("mikrotik:$key", $data, now()->addMinutes(5));
+                $this->info("✔ Cached $key to Redis.");
             } catch (\Exception $e) {
-                $this->error("Gagal cache $key: {$e->getMessage()}");
+                $this->warn("✘ Gagal ambil $key: " . $e->getMessage());
             }
         }
-        \Log::info('mikrotik:chache data command run at ' . now());
+
+        \Log::info('mikrotik:cache-to-redis run at ' . now());
     }
 }

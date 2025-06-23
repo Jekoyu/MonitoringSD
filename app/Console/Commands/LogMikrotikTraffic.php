@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 use App\Services\MikrotikService;
 
 class LogMikrotikTraffic extends Command
@@ -26,38 +26,37 @@ class LogMikrotikTraffic extends Command
             return;
         }
 
-        // Ambil semua interface, filter yang online saja (running == "true")
         $allInterfaces = $this->mikrotik->getInterfaces();
         $onlineInterfaces = array_filter($allInterfaces, function ($iface) {
             return isset($iface['running']) && $iface['running'] === 'true';
         });
 
-        $filename = 'mikrotik/traffic_logs.json';
-
-        $logs = Storage::exists($filename)
-            ? json_decode(Storage::get($filename), true)
-            : [];
+        // Ambil log lama dari Redis
+        $logs = Cache::get('mikrotik:traffic_logs', []);
 
         foreach ($onlineInterfaces as $ifaceData) {
             $ifaceName = $ifaceData['name'] ?? null;
-            // Skip jika lo atau wg0
             if (!$ifaceName || in_array($ifaceName, ['lo', 'wg0'])) continue;
 
-            $trafficArray = $this->mikrotik->getInterfaceTraffic($ifaceName);
-            $traffic = $trafficArray[0] ?? [];
+            try {
+                $trafficArray = $this->mikrotik->getInterfaceTraffic($ifaceName);
+                $traffic = $trafficArray[0] ?? [];
 
-            $logs[] = [
-                'timestamp' => now()->toDateTimeString(),
-                'interface' => $ifaceName,
-                'rx_bps'    => isset($traffic['rx-bits-per-second']) ? (int)$traffic['rx-bits-per-second'] : 0,
-                'tx_bps'    => isset($traffic['tx-bits-per-second']) ? (int)$traffic['tx-bits-per-second'] : 0
-            ];
+                $logs[] = [
+                    'timestamp' => now()->toDateTimeString(),
+                    'interface' => $ifaceName,
+                    'rx_bps'    => (int)($traffic['rx-bits-per-second'] ?? 0),
+                    'tx_bps'    => (int)($traffic['tx-bits-per-second'] ?? 0),
+                ];
+            } catch (\Exception $e) {
+                \Log::warning("Gagal ambil traffic $ifaceName: " . $e->getMessage());
+            }
         }
 
+        // Simpan kembali log ke Redis (set TTL opsional jika diinginkan)
+        Cache::put('mikrotik:traffic_logs', $logs, now()->addDays(7));
 
-        Storage::put($filename, json_encode($logs, JSON_PRETTY_PRINT));
-        $this->info("Traffic bandwidth for all online interfaces logged.");
+        $this->info("Traffic bandwidth for all online interfaces logged to Redis.");
         \Log::info('mikrotik:log-traffic command run at ' . now());
-
     }
 }

@@ -284,8 +284,7 @@
 
                 document.getElementById('latencyValue').innerText = `${latency} ms`;
 
-                // Progress bar makin kecil kalau latency besar
-                // Jadi 100% width kalau latency 0, dan makin kecil sampai 0% kalau latency 200ms atau lebih
+                
                 let percent = Math.max(0, 100 - (latency / 2)); // misal 200 ms -> 0%
                 percent = Math.min(percent, 100);
                 const latencyBar = document.getElementById('latencyBar');
@@ -350,11 +349,11 @@
         fetchUptime();
         fetchRealtimeTraffic();
 
-        setInterval(fetchLatency, 1000);
+        setInterval(fetchLatency, 500);
         setInterval(() => {
             updateUptimeDisplay();
-        }, 1000);
-        setInterval(fetchRealtimeTraffic, 1000);
+        }, 500);
+        setInterval(fetchRealtimeTraffic, 500);
     });
 
 
