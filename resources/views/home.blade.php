@@ -94,7 +94,7 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Download</h5>
-                    <h3 class="d-flex text-primary" id="downloadValue">0 Mbps<i class="ri-arrow-up-line"></i></h3>
+                    <h3 class="d-flex text-primary" id="downloadValue">0 Mbps<i class="ri-arrow-down-line"></i></h3>
                 </div>
 
                 <div class="mt-3">

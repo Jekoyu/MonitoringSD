@@ -12,8 +12,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('mikrotik:log-traffic')->everyMinute();
-        $schedule->command('mikrotik:cache-all')->everyMinute();
+        $schedule->command('mikrotik:log-traffic')->everyFiveMinutes();
+        $schedule->command('mikrotik:cache-all')->everyFiveMinutes();
     }
 
     /**

@@ -44,11 +44,11 @@
         "mac-address": "CC:F4:11:A0:E9:4F",
         "interface": "ether1",
         "published": "false",
-        "status": "reachable",
+        "status": "failed",
         "invalid": "false",
         "DHCP": "false",
         "dynamic": "true",
-        "complete": "true",
+        "complete": "false",
         "disabled": "false"
     },
     {
@@ -61,6 +61,19 @@
         "DHCP": "false",
         "dynamic": "true",
         "complete": "false",
+        "disabled": "false"
+    },
+    {
+        ".id": "*9",
+        "address": "192.168.10.15",
+        "mac-address": "10:E7:C6:F5:E5:8E",
+        "interface": "ether2",
+        "published": "false",
+        "status": "reachable",
+        "invalid": "false",
+        "DHCP": "false",
+        "dynamic": "true",
+        "complete": "true",
         "disabled": "false"
     }
 ]
