@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<!-- </div>
+</div>
 <ul class="navbar-list">
     <li class="line-height">
         <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
@@ -23,10 +23,10 @@
             <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 ">
                     <div class="bg-primary p-3">
-                        <h5 class="mb-0 text-white line-height">Hello Barry Tech</h5>
+                        <h5 class="mb-0 text-white line-height">Hello admin</h5>
                         <span class="text-white font-size-12">Available</span>
                     </div>
-                    <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                    <!-- <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
                         <div class="media align-items-center">
                             <div class="rounded iq-card-icon iq-bg-primary">
                                 <i class="ri-file-user-line"></i>
@@ -58,8 +58,8 @@
                                 <p class="mb-0 font-size-12">Manage your account parameters.</p>
                             </div>
                         </div>
-                    </a>
-                    <a href="privacy-setting.html" class="iq-sub-card iq-bg-primary-hover">
+                    </a> -->
+                    <!-- <a href="privacy-setting.html" class="iq-sub-card iq-bg-primary-hover">
                         <div class="media align-items-center">
                             <div class="rounded iq-card-icon iq-bg-primary">
                                 <i class="ri-lock-line"></i>
@@ -69,7 +69,7 @@
                                 <p class="mb-0 font-size-12">Control your privacy parameters.</p>
                             </div>
                         </div>
-                    </a>
+                    </a> -->
                     <div class="d-inline-block w-100 text-center p-3">
                         <a class="bg-primary iq-sign-btn" href="sign-in.html" role="button">Sign out<i class="ri-login-box-line ml-2"></i></a>
                     </div>
@@ -77,4 +77,4 @@
             </div>
         </div>
     </li>
-</ul> -->
+</ul>

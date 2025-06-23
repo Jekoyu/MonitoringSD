@@ -82,5 +82,11 @@
         "interface": "ether1",
         "rx_bps": 22368,
         "tx_bps": 18256
+    },
+    {
+        "timestamp": "2025-06-23 13:45:28",
+        "interface": "ether1",
+        "rx_bps": 15920,
+        "tx_bps": 15296
     }
 ]

@@ -212,4 +212,15 @@ class MikrotikApiController extends Controller
             ], 500);
         }
     }
+    public function testEnv()
+    {
+        return response()->json([
+            'host' => env('MIKROTIK_HOST'),
+            'user' => env('MIKROTIK_USER'),
+            'pass' => env('MIKROTIK_PASS'),
+            'cwd'  => getcwd(),
+            'exists_env' => file_exists(base_path('.env')),
+            'env_path' => base_path('.env'),
+        ]);
+    }
 }
