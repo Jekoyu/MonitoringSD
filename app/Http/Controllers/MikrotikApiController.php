@@ -82,11 +82,16 @@ class MikrotikApiController extends Controller
 
     public function trafficHistory(Request $request)
     {
-        $logs = json_decode(Cache::get('mikrotik:traffic_logs'), true);
-
-        if (!$logs || !is_array($logs)) {
-            return response()->json(['status' => 'error', 'message' => 'Traffic logs not found in Redis'], 404);
+        $logsJson = Cache::get('mikrotik:traffic_logs');
+        $logs = json_decode($logsJson, true);
+        
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($logs)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Traffic logs not found or invalid format'
+            ], 404);
         }
+        
 
         $range = $request->get('range', 'daily');
         $grouped = [];
@@ -120,11 +125,16 @@ class MikrotikApiController extends Controller
 
     public function bandwidthHistory(Request $request)
     {
-        $logs = json_decode(Cache::get('mikrotik:traffic_logs'), true);
-
-        if (!$logs || !is_array($logs)) {
-            return response()->json(['status' => 'error', 'message' => 'Traffic logs not found in Redis'], 404);
+        $logsJson = Cache::get('mikrotik:traffic_logs');
+        $logs = json_decode($logsJson, true);
+        
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($logs)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Traffic logs not found or invalid format'
+            ], 404);
         }
+        
 
         $range = $request->get('range', 'daily');
         $grouped = [];
