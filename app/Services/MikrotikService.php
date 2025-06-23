@@ -15,9 +15,9 @@ class MikrotikService
     {
         try {
             $this->client = new Client([
-                'host' => env('MIKROTIK_HOST'),
-                'user' => env('MIKROTIK_USER'),
-                'pass' => env('MIKROTIK_PASS'),
+                'host' => config('mikrotik.host'),
+                'user' => config('mikrotik.user'),
+                'pass' => config('mikrotik.pass'),
             ]);
         } catch (Exception $e) {
             $this->connectionError = 'Gagal membuat koneksi ke Mikrotik: ' . $e->getMessage();
