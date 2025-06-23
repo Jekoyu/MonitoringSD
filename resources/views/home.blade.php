@@ -328,27 +328,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    const dummyTrafficData = {
-        daily: [22, 28, 26, 35, 40, 45, 38],
-        weekly: [150, 160, 175, 170, 165, 180, 190],
-        monthly: [550, 600, 650, 580, 720, 700, 750]
-    };
-
-    const dummyBandwidthData = {
-        daily: {
-            download: [8, 10, 9.5, 11, 10.8, 12, 11.5],
-            upload: [3, 4, 3.5, 4.2, 4.1, 5, 4.5]
-        },
-        weekly: {
-            download: [70, 75, 78, 80, 85, 82, 90],
-            upload: [30, 32, 28, 34, 31, 36, 33]
-        },
-        monthly: {
-            download: [250, 270, 260, 300, 310, 280, 290],
-            upload: [110, 120, 115, 125, 130, 118, 123]
-        }
-    };
-
+   
     // ===============================
     // FETCH FUNCTIONS (with fallback)
     // ===============================

@@ -988,5 +988,971 @@
         "time": "19:17:55",
         "topics": "system,info,account",
         "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*A5",
+        "time": "19:17:55",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*A6",
+        "time": "19:18:29",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*A7",
+        "time": "19:18:30",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*A8",
+        "time": "19:18:30",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*A9",
+        "time": "19:18:30",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*AA",
+        "time": "19:18:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*AB",
+        "time": "19:18:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*AC",
+        "time": "19:18:56",
+        "topics": "interface,info",
+        "message": "ether2 link up (speed 1G, full duplex)"
+    },
+    {
+        ".id": "*AD",
+        "time": "19:18:58",
+        "topics": "dhcp,info",
+        "message": "dhcp1 assigned 192.168.10.15 for 10:E7:C6:F5:E5:8E bamskuyyyyy"
+    },
+    {
+        ".id": "*AE",
+        "time": "19:19:01",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via ssh"
+    },
+    {
+        ".id": "*AF",
+        "time": "19:19:05",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*B0",
+        "time": "19:19:05",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*B1",
+        "time": "19:19:05",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*B2",
+        "time": "19:19:05",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*B3",
+        "time": "19:19:07",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*B4",
+        "time": "19:19:07",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*B5",
+        "time": "19:25:33",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*B6",
+        "time": "19:25:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.10.15 via api"
+    },
+    {
+        ".id": "*B7",
+        "time": "19:45:44",
+        "topics": "interface,info",
+        "message": "ether2 link down"
+    },
+    {
+        ".id": "*B8",
+        "time": "19:45:58",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*B9",
+        "time": "19:45:58",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*BA",
+        "time": "19:45:59",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*BB",
+        "time": "19:45:59",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*BC",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*BD",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*BE",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*BF",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C0",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C1",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C2",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C3",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C4",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C5",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C6",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C7",
+        "time": "19:46:00",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C8",
+        "time": "19:46:08",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*C9",
+        "time": "19:46:08",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*CA",
+        "time": "19:46:09",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*CB",
+        "time": "19:46:09",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*CC",
+        "time": "19:46:20",
+        "topics": "dhcp,info",
+        "message": "dhcp5 deassigned 192.168.100.254 for 90:32:4B:60:44:EF bamskuyyyyy"
+    },
+    {
+        ".id": "*CD",
+        "time": "19:46:20",
+        "topics": "dhcp,info",
+        "message": "dhcp5 assigned 192.168.100.254 for 90:32:4B:60:44:EF bamskuyyyyy"
+    },
+    {
+        ".id": "*CE",
+        "time": "19:46:23",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*CF",
+        "time": "19:46:23",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D0",
+        "time": "19:48:22",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D1",
+        "time": "19:48:22",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D2",
+        "time": "19:48:38",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D3",
+        "time": "19:48:38",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D4",
+        "time": "19:48:38",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D5",
+        "time": "19:48:39",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D6",
+        "time": "19:48:40",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D7",
+        "time": "19:48:40",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D8",
+        "time": "19:48:49",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*D9",
+        "time": "19:48:49",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*DA",
+        "time": "19:51:09",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*DB",
+        "time": "19:51:09",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*DC",
+        "time": "19:53:57",
+        "topics": "dhcp,info",
+        "message": "dhcp1 deassigned 192.168.10.15 for 10:E7:C6:F5:E5:8E bamskuyyyyy"
+    },
+    {
+        ".id": "*DD",
+        "time": "19:55:55",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*DE",
+        "time": "19:55:55",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*DF",
+        "time": "19:56:54",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E0",
+        "time": "19:56:54",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E1",
+        "time": "19:56:54",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E2",
+        "time": "19:56:54",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E3",
+        "time": "19:57:06",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E4",
+        "time": "19:57:06",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E5",
+        "time": "19:57:06",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E6",
+        "time": "19:57:07",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E7",
+        "time": "19:57:07",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E8",
+        "time": "19:57:07",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*E9",
+        "time": "19:57:07",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*EA",
+        "time": "19:57:07",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*EB",
+        "time": "19:57:07",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*EC",
+        "time": "19:57:07",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*ED",
+        "time": "19:57:07",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*EE",
+        "time": "19:57:07",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*EF",
+        "time": "19:57:51",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F0",
+        "time": "19:57:51",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F1",
+        "time": "19:57:51",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F2",
+        "time": "19:57:51",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F3",
+        "time": "19:59:07",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F4",
+        "time": "19:59:07",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F5",
+        "time": "19:59:07",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F6",
+        "time": "19:59:07",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F7",
+        "time": "20:00:52",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F8",
+        "time": "20:00:52",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*F9",
+        "time": "20:00:52",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*FA",
+        "time": "20:00:52",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*FB",
+        "time": "20:01:10",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*FC",
+        "time": "20:01:10",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*FD",
+        "time": "20:01:10",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*FE",
+        "time": "20:01:10",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*FF",
+        "time": "20:01:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*100",
+        "time": "20:01:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*101",
+        "time": "20:01:32",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*102",
+        "time": "20:01:32",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*103",
+        "time": "20:01:37",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*104",
+        "time": "20:01:37",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*105",
+        "time": "20:01:37",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*106",
+        "time": "20:01:37",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*15E",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*15F",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*160",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*161",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*162",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*163",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*164",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*165",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*166",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*167",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*168",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*169",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*16A",
+        "time": "20:03:30",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*16B",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*16C",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*16D",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*16E",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*16F",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*170",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*171",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*172",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*173",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*174",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*175",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*176",
+        "time": "20:03:31",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*177",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*178",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*179",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*17A",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*17B",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*17C",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*17D",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*17E",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*17F",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*180",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*181",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*182",
+        "time": "20:03:32",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*183",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*184",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*185",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*186",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*187",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*188",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*189",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*18A",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*18B",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*18C",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*18D",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*18E",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*18F",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*190",
+        "time": "20:03:33",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*191",
+        "time": "20:03:34",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*192",
+        "time": "20:03:34",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*193",
+        "time": "20:03:34",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*194",
+        "time": "20:03:34",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*195",
+        "time": "20:03:35",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*196",
+        "time": "20:03:35",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*197",
+        "time": "20:03:35",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*198",
+        "time": "20:03:36",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*199",
+        "time": "20:03:36",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*19A",
+        "time": "20:03:36",
+        "topics": "system,info,account",
+        "message": "user admin logged out from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*19B",
+        "time": "20:03:36",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
+    },
+    {
+        ".id": "*19C",
+        "time": "20:03:36",
+        "topics": "system,info,account",
+        "message": "user admin logged in from 192.168.100.254 via api"
     }
 ]

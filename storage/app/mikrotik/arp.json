@@ -1,10 +1,24 @@
 [
     {
         ".id": "*1",
-        "address": "192.168.10.15",
-        "mac-address": "10:E7:C6:F5:E5:8E",
-        "interface": "ether2",
+        "address": "192.168.0.1",
+        "mac-address": "CC:2D:21:0A:49:F0",
+        "interface": "ether1",
         "published": "false",
+        "status": "reachable",
+        "invalid": "false",
+        "DHCP": "false",
+        "dynamic": "true",
+        "complete": "true",
+        "disabled": "false"
+    },
+    {
+        ".id": "*2",
+        "address": "192.168.100.254",
+        "mac-address": "90:32:4B:60:44:EF",
+        "interface": "ether1",
+        "published": "false",
+        "status": "reachable",
         "invalid": "false",
         "DHCP": "false",
         "dynamic": "true",

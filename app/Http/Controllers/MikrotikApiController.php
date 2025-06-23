@@ -64,7 +64,7 @@ class MikrotikApiController extends Controller
             }
 
             $data = $this->mikrotik->getInterfaceTraffic($interface);
-            // Optional: bisa cache juga ke file, tergantung kebutuhan
+
             return response()->json([
                 'status' => 'success',
                 'data' => $data
@@ -198,7 +198,6 @@ class MikrotikApiController extends Controller
                 ], 500);
             }
 
-            // Coba ambil identity (atau resource apapun, boleh diganti sesuai kebutuhan)
             $identity = $this->mikrotik->getSystemIdentity();
 
             return response()->json([

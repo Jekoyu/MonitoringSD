@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -8,7 +9,7 @@ use App\Services\MikrotikService;
 class LogMikrotikTraffic extends Command
 {
     protected $signature = 'mikrotik:log-traffic';
-    protected $description = 'Log MikroTik interface traffic periodically';
+    protected $description = 'Log MikroTik interface traffic bandwidth periodically';
 
     protected $mikrotik;
 
@@ -25,7 +26,8 @@ class LogMikrotikTraffic extends Command
             return;
         }
 
-        $interfaces = ['ether1']; 
+        // Bisa ganti sesuai interface yang mau di-log
+        $interfaces = ['ether1'];
         $filename = 'mikrotik/traffic_logs.json';
 
         $logs = Storage::exists($filename)
@@ -33,17 +35,20 @@ class LogMikrotikTraffic extends Command
             : [];
 
         foreach ($interfaces as $iface) {
-            $traffic = $this->mikrotik->getInterfaceTraffic($iface);
+            $trafficArray = $this->mikrotik->getInterfaceTraffic($iface);
+
+           
+            $traffic = $trafficArray[0] ?? [];
 
             $logs[] = [
                 'timestamp' => now()->toDateTimeString(),
                 'interface' => $iface,
-                'rx' => $traffic['rx-byte'],
-                'tx' => $traffic['tx-byte']
+                'rx_bps'    => isset($traffic['rx-bits-per-second']) ? (int)$traffic['rx-bits-per-second'] : 0,
+                'tx_bps'    => isset($traffic['tx-bits-per-second']) ? (int)$traffic['tx-bits-per-second'] : 0
             ];
         }
 
         Storage::put($filename, json_encode($logs, JSON_PRETTY_PRINT));
-        $this->info("Traffic logged.");
+        $this->info("Traffic bandwidth logged.");
     }
 }
