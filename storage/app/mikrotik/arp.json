@@ -5,11 +5,11 @@
         "mac-address": "30:E3:7A:32:A5:78",
         "interface": "ether1",
         "published": "false",
-        "status": "reachable",
+        "status": "failed",
         "invalid": "false",
         "DHCP": "false",
         "dynamic": "true",
-        "complete": "true",
+        "complete": "false",
         "disabled": "false"
     },
     {
@@ -39,18 +39,6 @@
         "disabled": "false"
     },
     {
-        ".id": "*4",
-        "address": "192.168.100.250",
-        "interface": "ether1",
-        "published": "false",
-        "status": "failed",
-        "invalid": "false",
-        "DHCP": "false",
-        "dynamic": "true",
-        "complete": "false",
-        "disabled": "false"
-    },
-    {
         ".id": "*5",
         "address": "192.168.0.100",
         "mac-address": "CC:F4:11:A0:E9:4F",
@@ -61,6 +49,18 @@
         "DHCP": "false",
         "dynamic": "true",
         "complete": "true",
+        "disabled": "false"
+    },
+    {
+        ".id": "*6",
+        "address": "192.168.30.2",
+        "interface": "ether4",
+        "published": "false",
+        "status": "failed",
+        "invalid": "false",
+        "DHCP": "false",
+        "dynamic": "true",
+        "complete": "false",
         "disabled": "false"
     }
 ]

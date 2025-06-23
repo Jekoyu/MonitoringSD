@@ -138,7 +138,8 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Uptime</h5>
-                    <h3 class="d-flex text-success"> <?= $uptime ?></h3>
+                    <h3 class="d-flex text-success" id="uptimeValue">0h0m0s</h3>
+
                 </div>
 
                 <div class="mt-3">
@@ -272,6 +273,8 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        let uptimeSeconds = 0;
+
         async function fetchLatency() {
             try {
                 const res = await fetch('/api/mikrotik/latency');
@@ -279,11 +282,12 @@
                 const data = await res.json();
                 const latency = data.latency || 0;
 
-                // Update elemen latency
                 document.getElementById('latencyValue').innerText = `${latency} ms`;
 
-                // Update progress bar (misal max 200ms)
-                const percent = Math.min((latency / 200) * 100, 100);
+                // Progress bar makin kecil kalau latency besar
+                // Jadi 100% width kalau latency 0, dan makin kecil sampai 0% kalau latency 200ms atau lebih
+                let percent = Math.max(0, 100 - (latency / 2)); // misal 200 ms -> 0%
+                percent = Math.min(percent, 100);
                 const latencyBar = document.getElementById('latencyBar');
                 latencyBar.style.width = percent + '%';
                 latencyBar.setAttribute('data-percent', latency);
@@ -292,24 +296,42 @@
             }
         }
 
-        fetchLatency();
-        setInterval(fetchLatency, 1000);
+        async function fetchUptime() {
+            try {
+                const res = await fetch('/api/mikrotik/uptime'); // endpoint yg ngasih uptime dalam detik
+                if (!res.ok) throw new Error('Network error');
+                const data = await res.json();
+                uptimeSeconds = data.uptime || 0;
+
+                updateUptimeDisplay();
+            } catch (e) {
+                console.error('Gagal fetch uptime:', e);
+            }
+        }
+
+        function updateUptimeDisplay() {
+            uptimeSeconds++;
+
+            const h = Math.floor(uptimeSeconds / 3600);
+            const m = Math.floor((uptimeSeconds % 3600) / 60);
+            const s = uptimeSeconds % 60;
+
+            const uptimeStr = `${h}h${m}m${s}s`;
+            document.querySelector('#uptimeValue').innerText = uptimeStr;
+        }
 
         async function fetchRealtimeTraffic() {
             try {
-                // Ganti URL ini sesuai route API backend yang return data traffic terbaru
                 const res = await fetch('/api/mikrotik/traffic/ether1');
                 if (!res.ok) throw new Error('Network error');
                 const data = await res.json();
 
-                // Ambil nilai bits per second, convert ke Mbps
                 const rx_bps = data.data[0]['rx-bits-per-second'] || 0;
                 const tx_bps = data.data[0]['tx-bits-per-second'] || 0;
 
                 const rx_mbps = (rx_bps / 1_000_00).toFixed(2);
                 const tx_mbps = (tx_bps / 1_000_00).toFixed(2);
 
-                // Update nilai text dan progress bar
                 document.getElementById('downloadValue').innerText = `${rx_mbps} Mbps`;
                 document.getElementById('uploadValue').innerText = `${tx_mbps} Mbps`;
 
@@ -318,18 +340,23 @@
 
                 document.getElementById('downloadBar').setAttribute('data-percent', rx_mbps);
                 document.getElementById('uploadBar').setAttribute('data-percent', tx_mbps);
-
             } catch (e) {
                 console.error('Gagal fetch data realtime:', e);
             }
         }
 
-        // Fetch sekali langsung
+        // Initial fetch dan interval update
+        fetchLatency();
+        fetchUptime();
         fetchRealtimeTraffic();
 
-        // Refresh tiap 5 detik (atur sesuai kebutuhan)
+        setInterval(fetchLatency, 1000);
+        setInterval(() => {
+            updateUptimeDisplay();
+        }, 1000);
         setInterval(fetchRealtimeTraffic, 1000);
     });
+
 
     function updateDeviceSummary(data) {
         const maxDevices = 5;

@@ -28,7 +28,7 @@ Route::prefix('mikrotik')->group(function () {
     Route::get('/', [MikrotikApiController::class, 'testConnection'])->name('api.test');
     Route::get('/test-env', [MikrotikApiController::class, 'testEnv']);
     Route::get('/latency', [MikrotikApiController::class, 'latency']);
-
+    Route::get('/uptime', [MikrotikApiController::class, 'uptime']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

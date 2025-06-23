@@ -264,4 +264,43 @@ class MikrotikApiController extends Controller
             ], 500);
         }
     }
+    public function uptime()
+    {
+        try {
+            $resources = $this->mikrotik->getResources();
+            $uptimeRaw = $resources[0]['uptime'] ?? '0s'; // contoh "1d2h3m4s"
+
+            // Parsing uptime string ke detik, misal helper parseUptimeToSeconds()
+            $seconds = $this->parseUptimeToSeconds($uptimeRaw);
+
+            return response()->json([
+                'status' => 'success',
+                'uptime' => $seconds,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    // Contoh parsing uptime string "1d2h3m4s" jadi detik
+    private function parseUptimeToSeconds(string $uptimeStr): int
+    {
+        $seconds = 0;
+        if (preg_match('/(\d+)d/', $uptimeStr, $matches)) {
+            $seconds += intval($matches[1]) * 86400;
+        }
+        if (preg_match('/(\d+)h/', $uptimeStr, $matches)) {
+            $seconds += intval($matches[1]) * 3600;
+        }
+        if (preg_match('/(\d+)m/', $uptimeStr, $matches)) {
+            $seconds += intval($matches[1]) * 60;
+        }
+        if (preg_match('/(\d+)s/', $uptimeStr, $matches)) {
+            $seconds += intval($matches[1]);
+        }
+        return $seconds;
+    }
 }
