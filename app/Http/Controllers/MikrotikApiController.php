@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\MikrotikService;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class MikrotikApiController extends Controller
@@ -17,12 +18,14 @@ class MikrotikApiController extends Controller
     protected function fetchAndCache(string $methodName, string $cacheFile)
     {
         try {
+            $cacheKey = 'mikrotik:' . str_replace(['/', '.json'], [':', ''], $cacheFile);
+
             if ($this->mikrotik->hasConnectionError()) {
-                if (Storage::disk('local')->exists($cacheFile)) {
-                    $cached = json_decode(Storage::get($cacheFile), true);
+                $cached = Cache::get($cacheKey);
+                if ($cached) {
                     return response()->json([
                         'status' => 'warning',
-                        'message' => 'Connection error, returning cached data',
+                        'message' => 'Connection error, returning cached data from Redis',
                         'data' => $cached
                     ]);
                 }
@@ -34,7 +37,8 @@ class MikrotikApiController extends Controller
             }
 
             $data = $this->mikrotik->{$methodName}();
-            Storage::disk('local')->put($cacheFile, json_encode($data, JSON_PRETTY_PRINT));
+
+            Cache::put($cacheKey, $data, now()->addMinutes(5));
 
             return response()->json([
                 'status' => 'success',
@@ -47,6 +51,8 @@ class MikrotikApiController extends Controller
             ], 500);
         }
     }
+
+
     public function interfaceTraffic($interface)
     {
         try {
