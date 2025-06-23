@@ -188,4 +188,29 @@ class MikrotikApiController extends Controller
             'upload' => $upload
         ]);
     }
+    public function testConnection()
+    {
+        try {
+            if ($this->mikrotik->hasConnectionError()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $this->mikrotik->getConnectionError(),
+                ], 500);
+            }
+
+            // Coba ambil identity (atau resource apapun, boleh diganti sesuai kebutuhan)
+            $identity = $this->mikrotik->getSystemIdentity();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Koneksi ke Mikrotik berhasil!',
+                'identity' => $identity,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }
