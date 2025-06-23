@@ -41,12 +41,28 @@ class MikrotikService
             throw new Exception($this->connectionError);
         }
 
-        try {
-            return $this->client->query($query)->read();
-        } catch (Exception $e) {
-            throw new Exception('Gagal mengambil data dari Mikrotik: ' . $e->getMessage());
+        $maxAttempts = 3;
+        $delaySeconds = 2;
+        $attempt = 0;
+
+        while ($attempt < $maxAttempts) {
+            try {
+                return $this->client->query($query)->read();
+            } catch (Exception $e) {
+                $attempt++;
+                if ($attempt >= $maxAttempts) {
+                    throw new Exception('Gagal mengambil data dari Mikrotik setelah beberapa percobaan: ' . $e->getMessage());
+                }
+                // Optional: log intermediate failure
+                \Log::warning("Percobaan $attempt gagal: " . $e->getMessage());
+                sleep($delaySeconds);
+            }
         }
+
+        // Sebenarnya tidak akan sampai sini
+        throw new Exception('Tidak bisa melakukan query Mikrotik.');
     }
+
 
     protected $blacklistInterfaces = ['lo', 'wg0'];
 
