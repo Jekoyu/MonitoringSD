@@ -19,7 +19,8 @@ jobs:
           script: |
             cd /var/www/MonitoringSD
             git config --global --add safe.directory /var/www/MonitoringSD
-            git pull origin main
+            git fetch origin
+            git reset --hard origin/main
             composer install --no-dev --optimize-autoloader
             composer dump-autoload
             php artisan clear-compiled
