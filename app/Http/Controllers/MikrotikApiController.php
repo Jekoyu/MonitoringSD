@@ -108,7 +108,7 @@ class MikrotikApiController extends Controller
 
         $grouped = [];
 
-        foreach ($logs as $i => $entry) {
+        foreach ($logs as $entry) {
             $timestamp = \Carbon\Carbon::parse($entry['timestamp']);
 
             $key = match ($range) {
@@ -119,24 +119,20 @@ class MikrotikApiController extends Controller
             };
 
             if (!isset($grouped[$key])) {
-                $grouped[$key] = ['rx' => 0, 'tx' => 0];
+                $grouped[$key] = ['rx_bps' => 0, 'tx_bps' => 0, 'count' => 0];
             }
-
-            if ($i > 0 && $logs[$i - 1]['interface'] === $entry['interface']) {
-                $prev = $logs[$i - 1];
-
-                $grouped[$key]['rx'] += max(0, $entry['rx'] - $prev['rx']);
-                $grouped[$key]['tx'] += max(0, $entry['tx'] - $prev['tx']);
-            }
+            $grouped[$key]['rx_bps'] += $entry['rx_bps'] ?? 0;
+            $grouped[$key]['tx_bps'] += $entry['tx_bps'] ?? 0;
+            $grouped[$key]['count'] += 1;
         }
 
-        // Byte → Mbps (per 5 menit ≈ 300s)
+        // Hitung rata-rata Mbps per slot waktu
         $trafficData = [];
         foreach ($grouped as $key => $v) {
-            $totalMb = round(($v['rx'] + $v['tx']) / (1024 * 1024), 2);
+            $totalMbps = round((($v['rx_bps'] + $v['tx_bps']) / $v['count']) / 1_000_000, 2); // bits per second → Mbps
             $trafficData[] = [
                 'time' => $key,
-                'traffic' => $totalMb
+                'traffic' => $totalMbps
             ];
         }
 
@@ -146,6 +142,7 @@ class MikrotikApiController extends Controller
             'traffic' => array_column($trafficData, 'traffic')
         ]);
     }
+
     public function bandwidthHistory()
     {
         $logs = json_decode(Storage::get('mikrotik/traffic_logs.json'), true);
@@ -153,7 +150,7 @@ class MikrotikApiController extends Controller
 
         $grouped = [];
 
-        foreach ($logs as $i => $entry) {
+        foreach ($logs as $entry) {
             $timestamp = \Carbon\Carbon::parse($entry['timestamp']);
             $iface = $entry['interface'];
 
@@ -165,21 +162,17 @@ class MikrotikApiController extends Controller
             };
 
             if (!isset($grouped[$key])) {
-                $grouped[$key] = ['rx' => 0, 'tx' => 0];
+                $grouped[$key] = ['rx_bps' => 0, 'tx_bps' => 0, 'count' => 0];
             }
 
-            if ($i > 0 && $logs[$i - 1]['interface'] === $iface) {
-                $prev = $logs[$i - 1];
-                $rx = $entry['rx'] - $prev['rx'];
-                $tx = $entry['tx'] - $prev['tx'];
-                $grouped[$key]['rx'] += max(0, $rx);
-                $grouped[$key]['tx'] += max(0, $tx);
-            }
+            $grouped[$key]['rx_bps'] += $entry['rx_bps'] ?? 0;
+            $grouped[$key]['tx_bps'] += $entry['tx_bps'] ?? 0;
+            $grouped[$key]['count'] += 1;
         }
 
         $categories = array_keys($grouped);
-        $download = array_map(fn($item) => round($item['rx'] / (1024 * 1024), 2), array_values($grouped));
-        $upload = array_map(fn($item) => round($item['tx'] / (1024 * 1024), 2), array_values($grouped));
+        $download = array_map(fn($item) => round(($item['rx_bps'] / $item['count']) / 1_000_000, 2), array_values($grouped));
+        $upload = array_map(fn($item) => round(($item['tx_bps'] / $item['count']) / 1_000_000, 2), array_values($grouped));
 
         return response()->json([
             'status' => 'success',
@@ -188,6 +181,7 @@ class MikrotikApiController extends Controller
             'upload' => $upload
         ]);
     }
+
     public function testConnection()
     {
         try {
@@ -213,14 +207,22 @@ class MikrotikApiController extends Controller
         }
     }
     public function testEnv()
-    {
-        return response()->json([
+{
+    return response()->json([
+        'mikrotik_env' => [
             'host' => env('MIKROTIK_HOST'),
             'user' => env('MIKROTIK_USER'),
             'pass' => env('MIKROTIK_PASS'),
-            'cwd'  => getcwd(),
-            'exists_env' => file_exists(base_path('.env')),
-            'env_path' => base_path('.env'),
-        ]);
-    }
+        ],
+        'mikrotik_config' => [
+            'host' => config('mikrotik.host'),
+            'user' => config('mikrotik.user'),
+            'pass' => config('mikrotik.pass'),
+        ],
+        'cwd'  => getcwd(),
+        'exists_env' => file_exists(base_path('.env')),
+        'env_path' => base_path('.env'),
+    ]);
+}
+
 }
