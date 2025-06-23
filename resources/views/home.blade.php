@@ -94,19 +94,20 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Download</h5>
-                    <h3 class="d-flex text-primary"> <?= $ether2['rx-byte'] ?><i class="ri-arrow-up-line"></i></h3>
+                    <h3 class="d-flex text-primary" id="downloadValue">0 Mbps<i class="ri-arrow-up-line"></i></h3>
                 </div>
 
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-primary" data-percent="<?= $ether2['rx-byte'] ?>"></span>
+                            <span class="bg-primary" id="downloadBar" data-percent="0"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
@@ -115,19 +116,20 @@
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Upload</h5>
-                    <h3 class="d-flex text-danger"> <?= $ether2['tx-byte'] ?><i class="ri-arrow-up-line"></i></h3>
+                    <h3 class="d-flex text-danger" id="uploadValue">0 Mbps<i class="ri-arrow-up-line"></i></h3>
                 </div>
 
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-danger" data-percent="<?= $ether2['tx-byte'] ?>"></span>
+                            <span class="bg-danger" id="uploadBar" data-percent="0"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
@@ -152,24 +154,25 @@
     <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
-                <div class="icon iq-icon-box iq-bg-warning rounded" data-wow-delay="0.2s">
+                <div class="icon iq-icon-box iq-bg-warning rounded">
                     <i class="ri-time-line"></i>
                 </div>
                 <div class="mt-4">
                     <h5 class="text-black text-uppercase">Latency</h5>
-                    <h3 class="d-flex text-warning"> <?= $ether2['latency'] ?>ms<i class="ri-arrow-down-line"></i></h3>
+                    <h3 class="d-flex text-warning" id="latencyValue">0 ms</h3>
                 </div>
 
                 <div class="mt-3">
                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                         <div class="iq-progress-bar">
-                            <span class="bg-warning" data-percent="72"></span>
+                            <span class="bg-warning" id="latencyBar" data-percent="0"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="col-lg-8">
@@ -266,9 +269,70 @@
 
 @endsection
 @push('scripts')
+
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        async function fetchLatency() {
+            try {
+                const res = await fetch('/api/mikrotik/latency');
+                if (!res.ok) throw new Error('Network error');
+                const data = await res.json();
+                const latency = data.latency || 0;
+
+                // Update elemen latency
+                document.getElementById('latencyValue').innerText = `${latency} ms`;
+
+                // Update progress bar (misal max 200ms)
+                const percent = Math.min((latency / 200) * 100, 100);
+                const latencyBar = document.getElementById('latencyBar');
+                latencyBar.style.width = percent + '%';
+                latencyBar.setAttribute('data-percent', latency);
+            } catch (e) {
+                console.error('Gagal fetch latency:', e);
+            }
+        }
+
+        fetchLatency();
+        setInterval(fetchLatency, 1000);
+
+        async function fetchRealtimeTraffic() {
+            try {
+                // Ganti URL ini sesuai route API backend yang return data traffic terbaru
+                const res = await fetch('/api/mikrotik/traffic/ether1');
+                if (!res.ok) throw new Error('Network error');
+                const data = await res.json();
+
+                // Ambil nilai bits per second, convert ke Mbps
+                const rx_bps = data.data[0]['rx-bits-per-second'] || 0;
+                const tx_bps = data.data[0]['tx-bits-per-second'] || 0;
+
+                const rx_mbps = (rx_bps / 1_000_00).toFixed(2);
+                const tx_mbps = (tx_bps / 1_000_00).toFixed(2);
+
+                // Update nilai text dan progress bar
+                document.getElementById('downloadValue').innerText = `${rx_mbps} Mbps`;
+                document.getElementById('uploadValue').innerText = `${tx_mbps} Mbps`;
+
+                document.getElementById('downloadBar').style.width = Math.min(rx_mbps * 10, 100) + '%';
+                document.getElementById('uploadBar').style.width = Math.min(tx_mbps * 10, 100) + '%';
+
+                document.getElementById('downloadBar').setAttribute('data-percent', rx_mbps);
+                document.getElementById('uploadBar').setAttribute('data-percent', tx_mbps);
+
+            } catch (e) {
+                console.error('Gagal fetch data realtime:', e);
+            }
+        }
+
+        // Fetch sekali langsung
+        fetchRealtimeTraffic();
+
+        // Refresh tiap 5 detik (atur sesuai kebutuhan)
+        setInterval(fetchRealtimeTraffic, 1000);
+    });
+
     function updateDeviceSummary(data) {
-        const maxDevices = 5; 
+        const maxDevices = 5;
         const onlineCount = data.filter(item => item.running === "true").length;
         const offlineCount = data.filter(item => item.running !== "true").length;
         document.getElementById("onlineCount").innerHTML =
@@ -326,135 +390,190 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
 
-   
-    // ===============================
-    // FETCH FUNCTIONS (with fallback)
-    // ===============================
-    async function fetchTrafficData(range) {
-        try {
-            const res = await fetch(`/api/mikrotik/traffic-history?range=${range}`);
-            if (!res.ok) throw new Error("HTTP Error");
-            const data = await res.json();
-            return {
-                categories: data.categories || [],
-                traffic: data.traffic || []
-            };
-        } catch (e) {
-            console.warn("Gagal fetch traffic, gunakan dummy.");
-            const categories = Array(dummyTrafficData[range].length).fill('').map((_, i) => `P${i + 1}`);
-            return {
-                categories: categories,
-                traffic: dummyTrafficData[range]
-            };
-        }
-    }
 
-    async function fetchBandwidthData(range) {
-        try {
-            const res = await fetch(`/api/mikrotik/bandwidth-history?range=${range}`);
-            if (!res.ok) throw new Error("HTTP Error");
-            const data = await res.json();
-            return {
-                categories: data.categories || [],
-                download: data.download || [],
-                upload: data.upload || []
-            };
-        } catch (e) {
-            console.warn("Gagal fetch bandwidth, gunakan dummy.");
-            const categories = Array(dummyBandwidthData[range].download.length).fill('').map((_, i) => `P${i + 1}`);
-            return {
-                categories: categories,
-                download: dummyBandwidthData[range].download,
-                upload: dummyBandwidthData[range].upload
-            };
-        }
-    }
-
-    // =======================================
-    // INITIAL RENDER DARI DATA 'daily'
-    // =======================================
-    let trafficChart, bandwidthChart;
-
-    async function initCharts() {
-        const traffic = await fetchTrafficData('daily');
-        const bandwidth = await fetchBandwidthData('daily');
-
-        trafficChart = new ApexCharts(document.querySelector("#report-chart-3"), {
-            chart: { type: 'area', height: 200, toolbar: { show: false } },
-            series: [{ name: 'Traffic (MB)', data: traffic.traffic }],
-            xaxis: { categories: traffic.categories },
-            colors: ['#3b76ef'],
-            fill: {
-                type: 'gradient',
-                gradient: {
-                    shadeIntensity: 1,
-                    opacityFrom: 0.4,
-                    opacityTo: 0.1,
-                    stops: [0, 100]
-                }
-            },
-            stroke: { curve: 'smooth', width: 3 },
-            dataLabels: { enabled: false },
-            tooltip: { y: { formatter: val => val + " MB" } }
-        });
-        trafficChart.render();
-
-        bandwidthChart = new ApexCharts(document.querySelector("#iq-bandwidth-chart"), {
-            chart: { type: 'bar', height: 300, toolbar: { show: false } },
-            series: [
-                { name: 'Download', data: bandwidth.download },
-                { name: 'Upload', data: bandwidth.upload }
-            ],
-            xaxis: { categories: bandwidth.categories },
-            colors: ['#0ac074', '#ff5c75'],
-            plotOptions: {
-                bar: {
-                    borderRadius: 6,
-                    columnWidth: '50%'
-                }
-            },
-            fill: { opacity: 1 },
-            dataLabels: { enabled: false },
-            tooltip: {
-                y: { formatter: val => val + " Mbps" }
+        // ===============================
+        // FETCH FUNCTIONS (with fallback)
+        // ===============================
+        async function fetchTrafficData(range) {
+            try {
+                const res = await fetch(`/api/mikrotik/traffic-history?range=${range}`);
+                if (!res.ok) throw new Error("HTTP Error");
+                const data = await res.json();
+                return {
+                    categories: data.categories || [],
+                    traffic: data.traffic || []
+                };
+            } catch (e) {
+                console.warn("Gagal fetch traffic, gunakan dummy.");
+                const categories = Array(dummyTrafficData[range].length).fill('').map((_, i) => `P${i + 1}`);
+                return {
+                    categories: categories,
+                    traffic: dummyTrafficData[range]
+                };
             }
-        });
-        bandwidthChart.render();
-    }
+        }
 
-    initCharts();
+        async function fetchBandwidthData(range) {
+            try {
+                const res = await fetch(`/api/mikrotik/bandwidth-history?range=${range}`);
+                if (!res.ok) throw new Error("HTTP Error");
+                const data = await res.json();
+                return {
+                    categories: data.categories || [],
+                    download: data.download || [],
+                    upload: data.upload || []
+                };
+            } catch (e) {
+                console.warn("Gagal fetch bandwidth, gunakan dummy.");
+                const categories = Array(dummyBandwidthData[range].download.length).fill('').map((_, i) => `P${i + 1}`);
+                return {
+                    categories: categories,
+                    download: dummyBandwidthData[range].download,
+                    upload: dummyBandwidthData[range].upload
+                };
+            }
+        }
 
-    // =======================================
-    // FILTER EVENTS
-    // =======================================
-    document.querySelectorAll('.filter-traffic').forEach(item => {
-        item.addEventListener('click', async function (e) {
-            e.preventDefault();
-            const range = this.dataset.range;
-            const newData = await fetchTrafficData(range);
-            trafficChart.updateOptions({ xaxis: { categories: newData.categories } });
-            trafficChart.updateSeries([{ name: 'Traffic (MB)', data: newData.traffic }]);
-            document.getElementById('trafficFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
+        // =======================================
+        // INITIAL RENDER DARI DATA 'daily'
+        // =======================================
+        let trafficChart, bandwidthChart;
+
+        async function initCharts() {
+            const traffic = await fetchTrafficData('daily');
+            const bandwidth = await fetchBandwidthData('daily');
+
+            trafficChart = new ApexCharts(document.querySelector("#report-chart-3"), {
+                chart: {
+                    type: 'area',
+                    height: 200,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                series: [{
+                    name: 'Traffic (MB)',
+                    data: traffic.traffic
+                }],
+                xaxis: {
+                    categories: traffic.categories
+                },
+                colors: ['#3b76ef'],
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shadeIntensity: 1,
+                        opacityFrom: 0.4,
+                        opacityTo: 0.1,
+                        stops: [0, 100]
+                    }
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 3
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                tooltip: {
+                    y: {
+                        formatter: val => val + " MB"
+                    }
+                }
+            });
+            trafficChart.render();
+
+            bandwidthChart = new ApexCharts(document.querySelector("#iq-bandwidth-chart"), {
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                series: [{
+                        name: 'Download',
+                        data: bandwidth.download
+                    },
+                    {
+                        name: 'Upload',
+                        data: bandwidth.upload
+                    }
+                ],
+                xaxis: {
+                    categories: bandwidth.categories
+                },
+                colors: ['#0ac074', '#ff5c75'],
+                plotOptions: {
+                    bar: {
+                        borderRadius: 6,
+                        columnWidth: '50%'
+                    }
+                },
+                fill: {
+                    opacity: 1
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                tooltip: {
+                    y: {
+                        formatter: val => val + " Mbps"
+                    }
+                }
+            });
+            bandwidthChart.render();
+        }
+
+        initCharts();
+
+        // =======================================
+        // FILTER EVENTS
+        // =======================================
+        document.querySelectorAll('.filter-traffic').forEach(item => {
+            item.addEventListener('click', async function(e) {
+                e.preventDefault();
+                const range = this.dataset.range;
+                const newData = await fetchTrafficData(range);
+                trafficChart.updateOptions({
+                    xaxis: {
+                        categories: newData.categories
+                    }
+                });
+                trafficChart.updateSeries([{
+                    name: 'Traffic (MB)',
+                    data: newData.traffic
+                }]);
+                document.getElementById('trafficFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
+            });
         });
+
+        document.querySelectorAll('.filter-bandwidth').forEach(item => {
+            item.addEventListener('click', async function(e) {
+                e.preventDefault();
+                const range = this.dataset.range;
+                const newData = await fetchBandwidthData(range);
+                bandwidthChart.updateOptions({
+                    xaxis: {
+                        categories: newData.categories
+                    }
+                });
+                bandwidthChart.updateSeries([{
+                        name: 'Download',
+                        data: newData.download
+                    },
+                    {
+                        name: 'Upload',
+                        data: newData.upload
+                    }
+                ]);
+                document.getElementById('bandwidthFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
+            });
+        });
+
     });
-
-    document.querySelectorAll('.filter-bandwidth').forEach(item => {
-        item.addEventListener('click', async function (e) {
-            e.preventDefault();
-            const range = this.dataset.range;
-            const newData = await fetchBandwidthData(range);
-            bandwidthChart.updateOptions({ xaxis: { categories: newData.categories } });
-            bandwidthChart.updateSeries([
-                { name: 'Download', data: newData.download },
-                { name: 'Upload', data: newData.upload }
-            ]);
-            document.getElementById('bandwidthFilterBtn').innerHTML = this.innerText + '<i class="ri-arrow-down-s-line ml-1 text-primary"></i>';
-        });
-    });
-
-});
 </script>
 
 

@@ -26,29 +26,36 @@ class LogMikrotikTraffic extends Command
             return;
         }
 
-        // Bisa ganti sesuai interface yang mau di-log
-        $interfaces = ['ether1'];
+        // Ambil semua interface, filter yang online saja (running == "true")
+        $allInterfaces = $this->mikrotik->getInterfaces();
+        $onlineInterfaces = array_filter($allInterfaces, function ($iface) {
+            return isset($iface['running']) && $iface['running'] === 'true';
+        });
+
         $filename = 'mikrotik/traffic_logs.json';
 
         $logs = Storage::exists($filename)
             ? json_decode(Storage::get($filename), true)
             : [];
 
-        foreach ($interfaces as $iface) {
-            $trafficArray = $this->mikrotik->getInterfaceTraffic($iface);
+        foreach ($onlineInterfaces as $ifaceData) {
+            $ifaceName = $ifaceData['name'] ?? null;
+            // Skip jika lo atau wg0
+            if (!$ifaceName || in_array($ifaceName, ['lo', 'wg0'])) continue;
 
-           
+            $trafficArray = $this->mikrotik->getInterfaceTraffic($ifaceName);
             $traffic = $trafficArray[0] ?? [];
 
             $logs[] = [
                 'timestamp' => now()->toDateTimeString(),
-                'interface' => $iface,
+                'interface' => $ifaceName,
                 'rx_bps'    => isset($traffic['rx-bits-per-second']) ? (int)$traffic['rx-bits-per-second'] : 0,
                 'tx_bps'    => isset($traffic['tx-bits-per-second']) ? (int)$traffic['tx-bits-per-second'] : 0
             ];
         }
 
+
         Storage::put($filename, json_encode($logs, JSON_PRETTY_PRINT));
-        $this->info("Traffic bandwidth logged.");
+        $this->info("Traffic bandwidth for all online interfaces logged.");
     }
 }

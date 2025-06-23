@@ -27,7 +27,7 @@ Route::prefix('mikrotik')->group(function () {
     Route::get('/bandwidth-history', [MikrotikApiController::class, 'bandwidthHistory']);
     Route::get('/', [MikrotikApiController::class, 'testConnection'])->name('api.test');
     Route::get('/test-env', [MikrotikApiController::class, 'testEnv']);
-
+    Route::get('/latency', [MikrotikApiController::class, 'latency']);
 
 });
 

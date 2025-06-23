@@ -47,6 +47,29 @@ class MikrotikApiController extends Controller
             ], 500);
         }
     }
+    public function interfaceTraffic($interface)
+    {
+        try {
+            if ($this->mikrotik->hasConnectionError()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $this->mikrotik->getConnectionError(),
+                ], 500);
+            }
+
+            $data = $this->mikrotik->getInterfaceTraffic($interface);
+
+            return response()->json([
+                'status' => 'success',
+                'data' => $data,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
 
     public function interfaces()
     {
@@ -207,22 +230,38 @@ class MikrotikApiController extends Controller
         }
     }
     public function testEnv()
-{
-    return response()->json([
-        'mikrotik_env' => [
-            'host' => env('MIKROTIK_HOST'),
-            'user' => env('MIKROTIK_USER'),
-            'pass' => env('MIKROTIK_PASS'),
-        ],
-        'mikrotik_config' => [
-            'host' => config('mikrotik.host'),
-            'user' => config('mikrotik.user'),
-            'pass' => config('mikrotik.pass'),
-        ],
-        'cwd'  => getcwd(),
-        'exists_env' => file_exists(base_path('.env')),
-        'env_path' => base_path('.env'),
-    ]);
-}
+    {
+        return response()->json([
+            'mikrotik_env' => [
+                'host' => env('MIKROTIK_HOST'),
+                'user' => env('MIKROTIK_USER'),
+                'pass' => env('MIKROTIK_PASS'),
+            ],
+            'mikrotik_config' => [
+                'host' => config('mikrotik.host'),
+                'user' => config('mikrotik.user'),
+                'pass' => config('mikrotik.pass'),
+            ],
+            'cwd'  => getcwd(),
+            'exists_env' => file_exists(base_path('.env')),
+            'env_path' => base_path('.env'),
+        ]);
+    }
+    public function latency()
+    {
+        try {
 
+            $latencyMs = $this->mikrotik->getLatency(); // hasil dalam ms, contoh: 50
+
+            return response()->json([
+                'status' => 'success',
+                'latency' => $latencyMs,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }

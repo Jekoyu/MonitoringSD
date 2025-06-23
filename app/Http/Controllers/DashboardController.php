@@ -27,7 +27,6 @@ class DashboardController extends Controller
         return view('home', [
             'ether2' => $ether2,
             'uptime' => $uptime,
-            
         ]);
     }
 }
