@@ -16,9 +16,9 @@ class Kernel extends ConsoleKernel
             ->everyFiveMinutes()
             ->withoutOverlapping();
 
-        $schedule->command('mikrotik:cache-to-redis')
-            ->everyFiveMinutes()
-            ->withoutOverlapping();
+        // $schedule->command('mikrotik:cache-to-redis')
+        //     ->everyFiveMinutes()
+        //     ->withoutOverlapping();
     }
 
     /**
