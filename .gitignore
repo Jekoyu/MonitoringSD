@@ -1,2 +1,3 @@
 # Ignore traffic logs
 storage/app/mikrotik/traffic_logs.json
+.env
