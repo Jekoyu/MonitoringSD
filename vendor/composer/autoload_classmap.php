@@ -6,6 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\CacheMikrotikData' => $baseDir . '/app/Console/Commands/CacheMikrotikData.php',
+    'App\\Console\\Commands\\LogMikrotikTraffic' => $baseDir . '/app/Console/Commands/LogMikrotikTraffic.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',

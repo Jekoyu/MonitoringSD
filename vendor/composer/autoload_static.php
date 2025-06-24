@@ -540,6 +540,8 @@ class ComposerStaticInita4a1c8b491b008b1b1a51eda57314fef
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\CacheMikrotikData' => __DIR__ . '/../..' . '/app/Console/Commands/CacheMikrotikData.php',
+        'App\\Console\\Commands\\LogMikrotikTraffic' => __DIR__ . '/../..' . '/app/Console/Commands/LogMikrotikTraffic.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
