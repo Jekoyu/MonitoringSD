@@ -113,122 +113,125 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function() {
-        // Inisialisasi DataTable
-        var table = $('#log-table').DataTable({
+    $(document).ready(function () {
+        const logTable = $('#log-table').DataTable({
             responsive: true,
-            order: [
-                [0, 'desc']
-            ],
+            order: [[0, 'desc']],
             language: {
                 url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
             },
             ajax: {
-                url: '{{ route("api.logs") }}', // Route untuk API log
-                dataSrc: 'data' // Data di dalam objek "data"
+                url: 'http://206.189.41.115:5000/logs',
+                dataSrc: function (json) {
+                    if (!json || !Array.isArray(json.logs)) return [];
+                    return json.logs.map(log => ({
+                        time: log.time || '-',
+                        topics: log.topics || '-',
+                        message: log.message || '-'
+                    }));
+                }
             },
-            columns: [{
-                    data: 'time'
-                },
+            columns: [
+                { data: 'time', title: 'Waktu' },
                 {
                     data: 'topics',
-                    render: function(data) {
-                        var mainType = data.split(',')[0].toUpperCase();
-                        var badgeClass = {
+                    title: 'Tipe',
+                    render: function (data) {
+                        const mainType = (data || '').split(',')[0].toUpperCase();
+                        const badgeClass = {
                             SYSTEM: 'info',
                             FIREWALL: 'danger',
                             INTERFACE: 'warning',
                             WIRELESS: 'primary',
                             DHCP: 'secondary'
-                        } [mainType] || 'dark';
+                        }[mainType] || 'dark';
                         return `<span class="badge badge-${badgeClass}">${mainType}</span>`;
                     }
                 },
                 {
                     data: 'topics',
-                    render: function(data) {
-                        return data.split(',')[1] || '-';
+                    title: 'Topik',
+                    render: function (data) {
+                        const parts = (data || '').split(',');
+                        return parts[1] || '-';
                     }
                 },
-                {
-                    data: 'message'
-                },
+                { data: 'message', title: 'Pesan' },
                 {
                     data: 'message',
-                    render: function(data) {
+                    title: 'IP',
+                    render: function (data) {
                         const ipMatch = data.match(/\b\d{1,3}(?:\.\d{1,3}){3}\b/);
                         return ipMatch ? ipMatch[0] : '-';
                     }
                 },
                 {
                     data: 'message',
-                    render: function(data) {
-                        const userMatch = data.match(/user\s+(\w+)/i);
+                    title: 'User',
+                    render: function (data) {
+                        const userMatch = data.match(/user\s+([\w-]+)/i);
                         return userMatch ? userMatch[1] : '-';
                     }
                 }
             ]
         });
 
-        // Filter log berdasarkan tipe
-        $('.dropdown-item[data-type]').click(function(e) {
+        // FILTER TIPE LOG
+        $('.dropdown-item[data-type]').click(function (e) {
             e.preventDefault();
-            var type = $(this).data('type');
+            const type = $(this).data('type').toLowerCase();
 
             $('.dropdown-item').removeClass('active');
             $(this).addClass('active');
 
             if (type === 'all') {
-                table.search('').columns().search('').draw();
+                logTable.search('').columns().search('').draw();
             } else {
-                table.columns(1).search(type).draw();
+                logTable.columns(1).search(type, true, false).draw(); // search by Tipe column (badge)
             }
         });
 
+        // SEMBUNYIKAN DUPLIKAT
         let hideDuplicates = false;
 
-        $('#toggle-duplicate').click(function() {
+        $('#toggle-duplicate').click(function () {
             hideDuplicates = !hideDuplicates;
-
             $(this).toggleClass('btn-outline-secondary btn-secondary');
-            $(this).html(hideDuplicates ?
-                '<i class="ri-filter-3-line mr-1"></i> Tampilkan Semua' :
-                '<i class="ri-filter-3-line mr-1"></i> Sembunyikan Duplikat');
-
+            $(this).html(
+                hideDuplicates
+                    ? '<i class="ri-filter-3-line mr-1"></i> Tampilkan Semua'
+                    : '<i class="ri-filter-3-line mr-1"></i> Sembunyikan Duplikat'
+            );
             filterDuplicates();
         });
 
         function filterDuplicates() {
             const seen = new Set();
 
-            $('#log-table tbody tr').each(function() {
-                const message = $(this).find('td').eq(3).text().trim(); // kolom message
-                const time = $(this).find('td').eq(0).text().trim(); // kolom waktu
-                const key = `${message}-${time}`;
+            $('#log-table tbody tr').each(function () {
+                const $row = $(this);
+                const msg = $row.find('td').eq(3).text().trim(); // pesan
+                const time = $row.find('td').eq(0).text().trim(); // waktu
+                const key = `${msg}-${time}`;
 
                 if (hideDuplicates && seen.has(key)) {
-                    $(this).hide();
+                    $row.hide();
                 } else {
-                    $(this).show();
+                    $row.show();
                     seen.add(key);
                 }
             });
         }
 
-        // panggil setelah data baru dimuat
-        table.on('draw', function() {
-            if (hideDuplicates) {
-                filterDuplicates();
-            }
+        logTable.on('draw', function () {
+            if (hideDuplicates) filterDuplicates();
         });
 
-        // Tombol refresh
-        $('#refresh-log').click(function() {
-            $('#loading-spinner').show(); // Tampilkan spinner
-
-            table.ajax.reload(function() {
-                $('#loading-spinner').hide(); // Sembunyikan setelah selesai
-
+        // REFRESH LOG
+        $('#refresh-log').click(function () {
+            $('#loading-spinner').show();
+            logTable.ajax.reload(function () {
+                $('#loading-spinner').hide();
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil!',
@@ -239,19 +242,18 @@
             });
         });
 
-
-        // Detail log saat row diklik
-        $('#log-table tbody').on('click', 'tr', function() {
-            var data = table.row(this).data();
-            $('#log-time').text(data.time);
-            $('#log-type').html(data.topics);
-            $('#log-topic').text(data.topics.split(',')[1] || '-');
-            $('#log-message').text(data.message);
+        // MODAL DETAIL
+        $('#log-table tbody').on('click', 'tr', function () {
+            const data = logTable.row(this).data();
+            $('#log-time').text(data.time || '-');
+            $('#log-type').text(data.topics || '-');
+            $('#log-topic').text((data.topics || '').split(',')[1] || '-');
+            $('#log-message').text(data.message || '-');
 
             const ipMatch = data.message.match(/\b\d{1,3}(?:\.\d{1,3}){3}\b/);
             $('#log-ip').text(ipMatch ? ipMatch[0] : '-');
 
-            const userMatch = data.message.match(/user\s+(\w+)/i);
+            const userMatch = data.message.match(/user\s+([\w-]+)/i);
             $('#log-user').text(userMatch ? userMatch[1] : '-');
 
             $('#logDetailModal').modal('show');
