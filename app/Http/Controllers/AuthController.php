@@ -32,6 +32,6 @@ class AuthController extends Controller
     public function logout()
     {
         Session::forget('user');
-        return response()->json(['message' => 'Logout berhasil', 'status' => 'success'], 200);
+        return redirect('/login');
     }
 }

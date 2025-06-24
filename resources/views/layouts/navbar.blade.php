@@ -71,7 +71,10 @@
                         </div>
                     </a> -->
                     <div class="d-inline-block w-100 text-center p-3">
-                        <a class="bg-primary iq-sign-btn" href="sign-in.html" role="button">Sign out<i class="ri-login-box-line ml-2"></i></a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                        </form>
                     </div>
                 </div>
             </div>
