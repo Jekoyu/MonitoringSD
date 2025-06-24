@@ -85,7 +85,7 @@
     </div>
 </div>
 
-<div class="col-lg-8 row m-0 p-0">
+<div class="col-lg-12 row m-0 p-0">
     <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
@@ -202,20 +202,6 @@
     </div>
 </div>
 
-<!-- <div class="col-lg-4">
-    <div class="iq-card iq-card-block iq-card-stretch iq-card-height bg-danger rounded">
-        <div class="iq-card-body">
-            <div class="d-flex align-items-center mb-3">
-                <div><i class="ri-alarm-warning-line fa-3x text-white"></i></div>
-                <h5 class="pl-3 text-white">Peringatan Jaringan</h5>
-            </div>
-            <p class="mb-2"><span class="text-white">1</span> Access Point Offline</p>
-            <p class="mb-2"><span class="text-white">3</span> Perangkat High Latency</p>
-            <p class="mb-3"><span class="text-white">85%</span> Penggunaan Bandwidth</p>
-            <button type="submit" class="btn w-100 btn-white mt-4 text-danger">Detail Masalah</button>
-        </div>
-    </div>
-</div> -->
 
 <div class="col-lg-12">
     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">

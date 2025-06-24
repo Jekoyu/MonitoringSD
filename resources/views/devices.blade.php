@@ -47,55 +47,69 @@
 
 @push('scripts')
 <script>
-    $('#devices-table').DataTable({
-        ajax: {
-            url: '{{ route("api.interfaces") }}', 
-            dataSrc: 'data'
-        },
-        columns: [{
-                data: null,
-                render: function(data, type, row, meta) {
-                    return meta.row + 1;
+    $(document).ready(function () {
+        $('#devices-table').DataTable({
+            ajax: {
+                url: 'http://206.189.41.115:5000/interfaces',
+                dataSrc: function (json) {
+                    if (!json || !Array.isArray(json.interfaces)) return [];
+
+                    return json.interfaces.map((item, index) => {
+                        const isOnline = item.running === 'true';
+
+                        return {
+                            name: item.name || '-',
+                            mac: item['mac-address'] || '-',
+                            type: item.type || '-',
+                            running: item.running || 'false',
+                            last_up: isOnline ? '' : (item['last-link-up-time'] || '-')
+                        };
+                    });
                 }
             },
-            {
-                data: 'name'
-            },
-            {
-                data: 'mac-address'
-            },
-            {
-                data: 'type'
-            },
-            {
-                data: 'running',
-                render: function(data) {
-                    return data === 'true' ?
-                        '<span class="badge badge-success">Online</span>' :
-                        '<span class="badge badge-danger">Offline</span>';
+            columns: [
+                {
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return meta.row + 1;
+                    }
+                },
+                { data: 'name', title: 'Nama' },
+                { data: 'mac', title: 'MAC Address' },
+                { data: 'type', title: 'Tipe' },
+                {
+                    data: 'running',
+                    title: 'Status',
+                    render: function (data) {
+                        return data === 'true'
+                            ? '<span class="badge badge-success">Online</span>'
+                            : '<span class="badge badge-danger">Offline</span>';
+                    }
+                },
+                {
+                    data: 'last_up',
+                    title: 'Last Up',
+                    render: function (data) {
+                        return data ? data : '<span class="text-muted">-</span>';
+                    }
                 }
-            },
-            {
-                data: 'last-link-up-time',
-                render: function(data) {
-                    return data ? data : '-';
+            ],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Cari perangkat...",
+                lengthMenu: "Tampilkan _MENU_ perangkat per halaman",
+                zeroRecords: "Tidak ada perangkat ditemukan",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ perangkat",
+                infoEmpty: "Menampilkan 0 sampai 0 dari 0 perangkat",
+                infoFiltered: "(disaring dari _MAX_ total perangkat)",
+                paginate: {
+                    previous: "<i class='ri-arrow-left-s-line'></i>",
+                    next: "<i class='ri-arrow-right-s-line'></i>"
                 }
             }
-        ],
-        responsive: true,
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Cari...",
-            lengthMenu: "Tampilkan _MENU_ data per halaman",
-            zeroRecords: "Tidak ada data yang ditemukan",
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-            infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
-            infoFiltered: "(disaring dari _MAX_ total data)",
-            paginate: {
-                previous: "<i class='ri-arrow-left-s-line'></i>",
-                next: "<i class='ri-arrow-right-s-line'></i>"
-            }
-        }
+        });
     });
 </script>
 @endpush
+
