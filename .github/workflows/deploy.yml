@@ -45,3 +45,6 @@ jobs:
 
             # Pastikan permission OK
             chown -R www-data:www-data .
+
+            sudo systemctl restart php8.3-fpm
+            sudo systemctl restart nginx
