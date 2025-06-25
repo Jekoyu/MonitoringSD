@@ -111,38 +111,38 @@ class MikrotikService
     }
     public function getLatency($targetIp = null, $count = 3)
     {
-        if ($targetIp === null) {
-            $interfaces = $this->getInterfaces();
-            $firstIface = $interfaces[0]['name'] ?? null;
-            if (!$firstIface) {
-                throw new \Exception("Interface tidak ditemukan untuk ping.");
-            }
-            $targetIp = config('mikrotik.gateway_ip', '10.20.20.2');
-        }
+        // if ($targetIp === null) {
+        //     $interfaces = $this->getInterfaces();
+        //     $firstIface = $interfaces[0]['name'] ?? null;
+        //     if (!$firstIface) {
+        //         throw new \Exception("Interface tidak ditemukan untuk ping.");
+        //     }
+        //     $targetIp = config('mikrotik.gateway_ip', '10.20.20.2');
+        // }
 
-        $query = new Query('/ping');
-        $query->equal('address', $targetIp)
-            ->equal('count', $count);
+        // $query = new Query('/ping');
+        // $query->equal('address', $targetIp)
+        //     ->equal('count', $count);
 
-        $result = $this->safeQuery($query);
+        // $result = $this->safeQuery($query);
 
-        // Hitung rata-rata latency dari hasil ping
-        if (empty($result)) {
-            throw new \Exception("Ping ke $targetIp gagal.");
-        }
+        // // Hitung rata-rata latency dari hasil ping
+        // if (empty($result)) {
+        //     throw new \Exception("Ping ke $targetIp gagal.");
+        // }
 
-        $totalLatency = 0;
-        $validCount = 0;
-        foreach ($result as $item) {
-            if (isset($item['time'])) {
-                $totalLatency += (float)$item['time'];
-                $validCount++;
-            }
-        }
-        if ($validCount === 0) {
-            throw new \Exception("Tidak ada data latency yang valid.");
-        }
+        // $totalLatency = 0;
+        // $validCount = 0;
+        // foreach ($result as $item) {
+        //     if (isset($item['time'])) {
+        //         $totalLatency += (float)$item['time'];
+        //         $validCount++;
+        //     }
+        // }
+        // if ($validCount === 0) {
+        //     throw new \Exception("Tidak ada data latency yang valid.");
+        // }
 
-        return round($totalLatency / $validCount, 2);
+        return "helo";
     }
 }
