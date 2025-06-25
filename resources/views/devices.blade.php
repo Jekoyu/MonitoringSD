@@ -16,13 +16,15 @@
                 <table id="devices-table" class="table table-striped table-bordered mt-4" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="5%">No</th>
+                            <th>No</th>
                             <th>Nama</th>
                             <th>MAC Address</th>
                             <th>Tipe</th>
                             <th>Status</th>
                             <th>Last Up</th>
-                            <th>Aksi</th> <!-- Tombol Detail -->
+                            <th>Download</th>
+                            <th>Upload</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -35,13 +37,62 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function () {
-        $('#devices-table').DataTable({
+    let deviceTable = null;
+    let trafficData = {};
+
+    async function fetchAllTrafficBatch() {
+        try {
+            const res = await fetch('http://206.189.41.115:5000/traffic/all');
+            if (!res.ok) throw new Error('Fetch traffic gagal');
+
+            const json = await res.json(); // sesuai contoh data dari kamu
+            trafficData = {}; // reset sebelumnya
+
+            (json.traffic || []).forEach(entry => {
+                const ifaceName = entry.iface;
+                const stats = entry.traffic?.[0]; // ambil objek pertama dari array "traffic"
+                if (ifaceName && stats) {
+                    trafficData[ifaceName] = {
+                        rx: (parseFloat(stats['rx-bits-per-second']) || 0) / 1_000_000,
+                        tx: (parseFloat(stats['tx-bits-per-second']) || 0) / 1_000_000
+                    };
+                }
+            });
+
+        } catch (e) {
+            console.error("Gagal memproses traffic:", e);
+            trafficData = {};
+        }
+    }
+
+
+    function updateTrafficInTable() {
+        if (!deviceTable) return;
+        deviceTable.rows().every(function() {
+            const rowData = this.data();
+            const node = this.node();
+            const iface = rowData.name;
+
+            const traffic = trafficData[iface];
+            if (traffic) {
+                const rx = traffic.rx.toFixed(2);
+                const tx = traffic.tx.toFixed(2);
+                $(node).find('td').eq(6).html(`${rx} Mbps`);
+                $(node).find('td').eq(7).html(`${tx} Mbps`);
+            } else {
+                $(node).find('td').eq(6).html('-');
+                $(node).find('td').eq(7).html('-');
+            }
+        });
+    }
+
+
+    $(document).ready(function() {
+        deviceTable = $('#devices-table').DataTable({
             ajax: {
                 url: 'http://206.189.41.115:5000/interfaces',
-                dataSrc: function (json) {
+                dataSrc: function(json) {
                     if (!json || !Array.isArray(json.interfaces)) return [];
-
                     return json.interfaces.map(item => {
                         const isOnline = item.running === 'true';
                         return {
@@ -49,30 +100,43 @@
                             mac: item['mac-address'] || '-',
                             type: item.type || '-',
                             running: item.running || 'false',
-                            last_up: isOnline ? '' : (item['last-link-up-time'] || '-')
+                            last_up: isOnline ? '' : (item['last-link-up-time'] || '-'),
+                            download: '-', // placeholder
+                            upload: '-' // placeholder
                         };
                     });
                 }
             },
-            columns: [
-                {
+            columns: [{
                     data: null,
                     render: (data, type, row, meta) => meta.row + 1
                 },
-                { data: 'name' },
-                { data: 'mac' },
-                { data: 'type' },
+                {
+                    data: 'name'
+                },
+                {
+                    data: 'mac'
+                },
+                {
+                    data: 'type'
+                },
                 {
                     data: 'running',
                     render: data =>
-                        data === 'true'
-                            ? '<span class="badge badge-success">Online</span>'
-                            : '<span class="badge badge-danger">Offline</span>'
+                        data === 'true' ?
+                        '<span class="badge badge-success">Online</span>' :
+                        '<span class="badge badge-danger">Offline</span>'
                 },
                 {
                     data: 'last_up',
                     render: data => data ? data : '<span class="text-muted">-</span>'
                 },
+                {
+                    data: 'download'
+                }, // Kolom download
+                {
+                    data: 'upload'
+                }, // Kolom upload
                 {
                     data: 'name',
                     render: name => `
@@ -82,6 +146,13 @@
                 }
             ],
             responsive: true,
+            initComplete: function() {
+                // Mulai polling data traffic setiap 5 detik
+                setInterval(async () => {
+                    await fetchAllTrafficBatch();
+                    updateTrafficInTable();
+                }, 1000);
+            },
             language: {
                 search: "_INPUT_",
                 searchPlaceholder: "Cari perangkat...",
