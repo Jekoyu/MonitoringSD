@@ -41,29 +41,28 @@
     let trafficData = {};
 
     async function fetchAllTrafficBatch() {
-        try {
-            const res = await fetch('http://206.189.41.115:5000/traffic/all');
-            if (!res.ok) throw new Error('Fetch traffic gagal');
+    try {
+        const res = await fetch('http://206.189.41.115:5000/alltraffic/');
+        if (!res.ok) throw new Error('Fetch traffic gagal');
 
-            const json = await res.json(); // sesuai contoh data dari kamu
-            trafficData = {}; // reset sebelumnya
+        const json = await res.json();
+        const traffic = json.traffic || {};
+        trafficData = {}; // reset
 
-            (json.traffic || []).forEach(entry => {
-                const ifaceName = entry.iface;
-                const stats = entry.traffic?.[0]; // ambil objek pertama dari array "traffic"
-                if (ifaceName && stats) {
-                    trafficData[ifaceName] = {
-                        rx: (parseFloat(stats['rx-bits-per-second']) || 0) / 1_000_000,
-                        tx: (parseFloat(stats['tx-bits-per-second']) || 0) / 1_000_000
-                    };
-                }
-            });
-
-        } catch (e) {
-            console.error("Gagal memproses traffic:", e);
-            trafficData = {};
-        }
+        Object.keys(traffic).forEach(iface => {
+            const stats = traffic[iface];
+            if (stats) {
+                trafficData[iface] = {
+                    rx: (parseFloat(stats['rx-bits-per-second']) || 0) / 1_000_000,
+                    tx: (parseFloat(stats['tx-bits-per-second']) || 0) / 1_000_000
+                };
+            }
+        });
+    } catch (e) {
+        console.error("Gagal memproses traffic:", e);
+        trafficData = {};
     }
+}
 
 
     function updateTrafficInTable() {
