@@ -41,28 +41,28 @@
     let trafficData = {};
 
     async function fetchAllTrafficBatch() {
-    try {
-        const res = await fetch('http://206.189.41.115:5000/alltraffic/');
-        if (!res.ok) throw new Error('Fetch traffic gagal');
+        try {
+            const res = await fetch('http://206.189.41.115:5000/alltraffic/');
+            if (!res.ok) throw new Error('Fetch traffic gagal');
 
-        const json = await res.json();
-        const traffic = json.traffic || {};
-        trafficData = {}; // reset
+            const json = await res.json();
+            const traffic = json.traffic || {};
+            trafficData = {}; // reset
 
-        Object.keys(traffic).forEach(iface => {
-            const stats = traffic[iface];
-            if (stats) {
-                trafficData[iface] = {
-                    rx: (parseFloat(stats['rx-bits-per-second']) || 0) / 1_000_000,
-                    tx: (parseFloat(stats['tx-bits-per-second']) || 0) / 1_000_000
-                };
-            }
-        });
-    } catch (e) {
-        console.error("Gagal memproses traffic:", e);
-        trafficData = {};
+            Object.keys(traffic).forEach(iface => {
+                const stats = traffic[iface];
+                if (stats) {
+                    trafficData[iface] = {
+                        rx: (parseFloat(stats['rx-bits-per-second']) || 0) / 1_000_000,
+                        tx: (parseFloat(stats['tx-bits-per-second']) || 0) / 1_000_000
+                    };
+                }
+            });
+        } catch (e) {
+            console.error("Gagal memproses traffic:", e);
+            trafficData = {};
+        }
     }
-}
 
 
     function updateTrafficInTable() {
@@ -123,8 +123,7 @@
                     data: 'running',
                     render: data =>
                         data === 'true' ?
-                        '<span class="badge badge-success">Online</span>' :
-                        '<span class="badge badge-danger">Offline</span>'
+                        '<span class="badge badge-success">Online</span>' : '<span class="badge badge-danger">Offline</span>'
                 },
                 {
                     data: 'last_up',
@@ -146,12 +145,19 @@
             ],
             responsive: true,
             initComplete: function() {
-                // Mulai polling data traffic setiap 5 detik
+                // 1️⃣ Update traffic tiap 1 detik
                 setInterval(async () => {
                     await fetchAllTrafficBatch();
                     updateTrafficInTable();
-                }, 1000);
+                }, 1000); // 1 detik
+
+                // 2️⃣ Reload seluruh tabel (status, list device) tiap 30 detik
+                setInterval(() => {
+                    console.log('🔁 Reload seluruh tabel perangkat...');
+                    deviceTable.ajax.reload(null, false); // false: jangan reset ke page 1
+                }, 15_000); // 30 detik
             },
+
             language: {
                 search: "_INPUT_",
                 searchPlaceholder: "Cari perangkat...",
