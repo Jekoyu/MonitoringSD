@@ -27,7 +27,11 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
-
+    Route::get('/device-details/{name}', function($name) {
+        return view('device-details', ['device' => $name]);
+    });
+    
+    
     Route::get('/devices',[DevicesController::class,'index'])->name('devices');
     Route::get('/systems',[SystemsController::class,'index'])->name('systems');
     Route::get('/logs',[LogsController::class,'index'])->name('logs');

@@ -4,18 +4,12 @@
 @section('page-title', 'Manajemen Perangkat')
 
 @section('content')
-
 <div class="col-lg-12">
     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-header d-flex justify-content-between">
             <div class="iq-header-title">
                 <h4 class="card-title">Daftar Perangkat Jaringan</h4>
             </div>
-            <!-- <div class="iq-card-header-toolbar d-flex align-items-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDeviceModal">
-                    <i class="ri-add-line mr-1"></i>Tambah Perangkat
-                </button>
-            </div> -->
         </div>
         <div class="iq-card-body">
             <div class="table-responsive">
@@ -28,21 +22,15 @@
                             <th>Tipe</th>
                             <th>Status</th>
                             <th>Last Up</th>
-                           
+                            <th>Aksi</th> <!-- Tombol Detail -->
                         </tr>
                     </thead>
-
-                    <tbody>
-                        
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-
-
 @endsection
 
 @push('scripts')
@@ -54,9 +42,8 @@
                 dataSrc: function (json) {
                     if (!json || !Array.isArray(json.interfaces)) return [];
 
-                    return json.interfaces.map((item, index) => {
+                    return json.interfaces.map(item => {
                         const isOnline = item.running === 'true';
-
                         return {
                             name: item.name || '-',
                             mac: item['mac-address'] || '-',
@@ -70,28 +57,28 @@
             columns: [
                 {
                     data: null,
-                    render: function (data, type, row, meta) {
-                        return meta.row + 1;
-                    }
+                    render: (data, type, row, meta) => meta.row + 1
                 },
-                { data: 'name', title: 'Nama' },
-                { data: 'mac', title: 'MAC Address' },
-                { data: 'type', title: 'Tipe' },
+                { data: 'name' },
+                { data: 'mac' },
+                { data: 'type' },
                 {
                     data: 'running',
-                    title: 'Status',
-                    render: function (data) {
-                        return data === 'true'
+                    render: data =>
+                        data === 'true'
                             ? '<span class="badge badge-success">Online</span>'
-                            : '<span class="badge badge-danger">Offline</span>';
-                    }
+                            : '<span class="badge badge-danger">Offline</span>'
                 },
                 {
                     data: 'last_up',
-                    title: 'Last Up',
-                    render: function (data) {
-                        return data ? data : '<span class="text-muted">-</span>';
-                    }
+                    render: data => data ? data : '<span class="text-muted">-</span>'
+                },
+                {
+                    data: 'name',
+                    render: name => `
+                        <a href="/device-details/${encodeURIComponent(name)}" class="btn btn-sm btn-outline-primary">
+                            Detail
+                        </a>`
                 }
             ],
             responsive: true,
@@ -112,4 +99,3 @@
     });
 </script>
 @endpush
-
